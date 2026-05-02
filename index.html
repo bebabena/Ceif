@@ -604,18 +604,18 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
         </div>
       </div>
 
-      <!-- Puck picker -->
-      <div class="puck-wrap" id="puck-wrap" style="display:none">
-        <div class="taste-lbl">Puck condition?</div>
-        <div class="puck-grid" id="puck-grid"></div>
-      </div>
-
       <!-- Taste selector -->
       <div class="taste-lbl">How did it taste?</div>
       <div class="tgrid" id="tgrid"></div>
 
       <!-- Diagnostics -->
       <div id="diag-area"></div>
+
+      <!-- Puck picker — appears after taste is selected -->
+      <div class="puck-wrap" id="puck-wrap" style="display:none">
+        <div class="taste-lbl">Puck condition?</div>
+        <div class="puck-grid" id="puck-grid"></div>
+      </div>
 
       <!-- TDS quick input -->
       <div class="tds-quick" id="tds-quick" style="display:none">
@@ -2499,8 +2499,8 @@ function renderPuckPicker(){
   const wrap=document.getElementById('puck-wrap');
   const grid=document.getElementById('puck-grid');
   if(!wrap||!grid)return;
-  // Only show after timer has been used or shot time chip was touched
-  if(_timerMs>0||P.time!==28)wrap.style.display='block';
+  // Show whenever a taste has been selected
+  if(taste)wrap.style.display='block';
   grid.innerHTML=PUCK_STATES.map(s=>`
     <button class="puck-btn${puck===s.id?' on':''}" onclick="selectPuck('${s.id}')">
       <div class="puck-btn-ico">${s.ico}</div>
@@ -3263,16 +3263,10 @@ function boot(){
 }
 boot();
 
-// ── INLINE PWA SETUP ──────────────────────────────────────────────────────
 (function(){
-  try{
-    const blob=new Blob([JSON.stringify({   "name": "Ćeif — Espresso Diagnostics",   "short_name": "Ćeif",   "start_url": "./",   "display": "standalone",   "orientation": "portrait",   "background_color": "#0a0907",   "theme_color": "#0a0907",   "icons": [{"src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjEwMCIgZmlsbD0iIzBhMDkwNyIvPgogIDxjaXJjbGUgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMjAwIiBmaWxsPSIjMWExNTEwIiBzdHJva2U9IiMzYTJlMTgiIHN0cm9rZS13aWR0aD0iOCIvPgogIDxwYXRoIGQ9Ik0xNjAgMzcwUTE1NSAyNzAgMTcwIDIwMFExOTAgMTMwIDI1NiAxMzBRMzIyIDEzMCAzNDIgMjAwUTM1NyAyNzAgMzUyIDM3MFEzNTIgMzgwIDI1NiAzODBRMTYwIDM4MCAxNjAgMzcwWiIgZmlsbD0iI2M4OTAzYSIvPgogIDxlbGxpcHNlIGN4PSIyNTYiIGN5PSIzNzgiIHJ4PSI5NiIgcnk9IjIyIiBmaWxsPSIjOWE2ODI4Ii8+CiAgPHBhdGggZD0iTTM0MiAyMTVRNDAwIDIxMCA0MDAgMjU1UTQwMCAzMDAgMzQyIDI4NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzg5MDNhIiBzdHJva2Utd2lkdGg9IjE4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8ZWxsaXBzZSBjeD0iMjU2IiBjeT0iMTMyIiByeD0iODYiIHJ5PSIyMCIgZmlsbD0iIzBhMDkwNyIvPgogIDx0ZXh0IHg9IjI1NiIgeT0iMjkwIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSIxMDAiIGZvbnQtd2VpZ2h0PSIzMDAiIGZpbGw9IiNjOWE1NWEiIHRleHQtYW5jaG9yPSJtaWRkbGUiPsSGPC90ZXh0Pgo8L3N2Zz4K", "sizes": "any", "type": "image/svg+xml"}],   "categories": ["food", "lifestyle"] })],{type:'application/json'});
-    const l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(blob);
-    document.head.appendChild(l);
-  }catch(e){}
-  if('serviceWorker' in navigator && location.protocol==='https:'){
-    try{
-      const sw=`// Ćeif Service Worker — maintenance reminders
+  try{const b=new Blob(['{"name":"Ćeif — Espresso Diagnostics","short_name":"Ćeif","start_url":"./","display":"standalone","orientation":"portrait","background_color":"#0a0907","theme_color":"#0a0907","icons":[{"src":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjEwMCIgZmlsbD0iIzBhMDkwNyIvPgogIDxjaXJjbGUgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMjAwIiBmaWxsPSIjMWExNTEwIiBzdHJva2U9IiMzYTJlMTgiIHN0cm9rZS13aWR0aD0iOCIvPgogIDxwYXRoIGQ9Ik0xNjAgMzcwUTE1NSAyNzAgMTcwIDIwMFExOTAgMTMwIDI1NiAxMzBRMzIyIDEzMCAzNDIgMjAwUTM1NyAyNzAgMzUyIDM3MFEzNTIgMzgwIDI1NiAzODBRMTYwIDM4MCAxNjAgMzcwWiIgZmlsbD0iI2M4OTAzYSIvPgogIDxlbGxpcHNlIGN4PSIyNTYiIGN5PSIzNzgiIHJ4PSI5NiIgcnk9IjIyIiBmaWxsPSIjOWE2ODI4Ii8+CiAgPHBhdGggZD0iTTM0MiAyMTVRNDAwIDIxMCA0MDAgMjU1UTQwMCAzMDAgMzQyIDI4NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzg5MDNhIiBzdHJva2Utd2lkdGg9IjE4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8ZWxsaXBzZSBjeD0iMjU2IiBjeT0iMTMyIiByeD0iODYiIHJ5PSIyMCIgZmlsbD0iIzBhMDkwNyIvPgogIDx0ZXh0IHg9IjI1NiIgeT0iMjkwIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSIxMDAiIGZvbnQtd2VpZ2h0PSIzMDAiIGZpbGw9IiNjOWE1NWEiIHRleHQtYW5jaG9yPSJtaWRkbGUiPsSGPC90ZXh0Pgo8L3N2Zz4K","sizes":"any","type":"image/svg+xml"}]}'],{type:'application/json'});const l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(b);document.head.appendChild(l);}catch(e){}
+  if('serviceWorker' in navigator&&location.protocol==='https:'){
+    try{const sw=`// Ćeif Service Worker — maintenance reminders
 // Deploy alongside index.html on GitHub Pages
 
 const CACHE='ceif-v1';
@@ -3334,10 +3328,7 @@ self.addEventListener('notificationclick',e=>{
     })
   );
 });
-`;
-      const b=new Blob([sw],{type:'application/javascript'});
-      navigator.serviceWorker.register(URL.createObjectURL(b),{scope:'./'});
-    }catch(e){}
+`;const b=new Blob([sw],{type:'application/javascript'});navigator.serviceWorker.register(URL.createObjectURL(b),{scope:'./'});}catch(e){}
   }
 })();
 </script>
