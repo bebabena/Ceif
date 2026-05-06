@@ -608,26 +608,12 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
         </div>
       </div>
 
-      <!-- Taste selector -->
-      <div class="taste-lbl">How did it taste?</div>
+      <!-- Taste selector - multi-select with per-taste intensity -->
+      <div class="taste-lbl">How did it taste? <span style="font-size:10px;color:var(--text4);font-weight:400">Select all that apply</span></div>
       <div class="tgrid" id="tgrid"></div>
 
-      <!-- Intensity slider - appears after taste selected -->
-      <div id="intensity-row" style="display:none;margin:-6px 0 14px">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-          <div style="font-size:10px;font-weight:600;color:var(--text4);letter-spacing:0.5px">INTENSITY</div>
-          <div style="font-size:12px;font-weight:600;color:var(--text3)" id="intensity-lbl">Moderate (3)</div>
-        </div>
-        <div id="intensity-trk" style="position:relative;height:28px;cursor:pointer;touch-action:pan-y">
-          <div style="position:absolute;top:50%;left:0;right:0;height:4px;transform:translateY(-50%);background:var(--bg3);border-radius:2px"></div>
-          <div id="intensity-fill" style="position:absolute;top:50%;left:0;height:4px;width:50%;transform:translateY(-50%);background:var(--gold);border-radius:2px;transition:width 0.15s"></div>
-          <div id="intensity-thumb" style="position:absolute;top:50%;width:22px;height:22px;transform:translate(-50%,-50%);background:var(--surface);border:2.5px solid var(--gold);border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.5);left:50%;transition:left 0.15s"></div>
-        </div>
-        <div style="display:flex;justify-content:space-between;margin-top:4px">
-          <span style="font-size:9px;color:var(--text4)">Subtle</span>
-          <span style="font-size:9px;color:var(--text4)">Intense</span>
-        </div>
-      </div>
+      <!-- Per-taste intensity rows -->
+      <div id="taste-intensities"></div>
 
       <!-- Diagnostics -->
       <div id="diag-area"></div>
@@ -688,55 +674,30 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
     <div class="view" id="view-support">
       <div style="padding:16px 18px 80px">
         <div style="font-family:'Fraunces',serif;font-size:26px;font-weight:500;color:var(--text);margin-bottom:4px">Support Ćejf</div>
-        <div style="font-size:12px;color:var(--text3);margin-bottom:20px;line-height:1.7">Ćejf is built by one person, kept free for the community. If it's helped you dial in a better shot, consider supporting its development.</div>
+        <div style="font-size:12px;color:var(--text3);margin-bottom:20px;line-height:1.7">Ćejf is free, and will stay that way. If it's helped you dial in a better shot, a tip or a few words of feedback means a lot to a solo builder.</div>
+
+        <!-- Feedback form -->
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:14px">
+          <div style="font-family:'Fraunces',serif;font-size:17px;font-weight:500;color:var(--text);margin-bottom:4px">Send feedback</div>
+          <div style="font-size:12px;color:var(--text3);margin-bottom:14px;line-height:1.7">Bug, suggestion, missing feature, or just letting me know how it's going — all welcome.</div>
+          <input id="feedback-email" type="email" placeholder="Your email (optional)" style="width:100%;padding:10px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);color:var(--text);font-family:inherit;font-size:12px;outline:none;margin-bottom:9px;box-sizing:border-box"/>
+          <textarea id="feedback-text" placeholder="What's on your mind?" rows="4" style="width:100%;padding:10px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);color:var(--text);font-family:inherit;font-size:12px;outline:none;resize:vertical;margin-bottom:9px;box-sizing:border-box;line-height:1.6"></textarea>
+          <button onclick="sendFeedback()" id="feedback-btn" style="width:100%;padding:12px;border:none;border-radius:var(--r-sm);background:var(--gold);color:#0a0907;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s">Send →</button>
+          <div id="feedback-status" style="font-size:11px;color:var(--text4);text-align:center;margin-top:8px;min-height:16px"></div>
+        </div>
 
         <!-- Pro unlock -->
-        <div id="pro-card" style="background:var(--bg2);border:1.5px solid var(--gold-dim);border-radius:var(--r);padding:18px;margin-bottom:14px">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-            <div style="font-size:24px">✦</div>
-            <div>
-              <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:500;color:var(--gold)" id="pro-title">Ćejf Pro</div>
-              <div style="font-size:11px;color:var(--text4);margin-top:1px" id="pro-status-lbl">Unlock AI-powered features</div>
-            </div>
-            <div style="margin-left:auto;font-family:'Fraunces',serif;font-size:20px;font-weight:500;color:var(--gold)" id="pro-price">€4.99</div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px">
-            <div style="display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--text3)"><span style="color:var(--gold);flex-shrink:0">✓</span>Label scanning — point camera at any bag, Claude reads it</div>
-            <div style="display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--text3)"><span style="color:var(--gold);flex-shrink:0">✓</span>AI notes interpretation — describe your shot, get specific advice</div>
-            <div style="display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--text3)"><span style="color:var(--gold);flex-shrink:0">✓</span>All future AI features as they're added</div>
-            <div style="display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--text3)"><span style="color:var(--gold);flex-shrink:0">✓</span>One-time payment, no subscription</div>
-          </div>
-          <button id="pro-btn" onclick="handleProPurchase()" style="width:100%;padding:14px;border:none;border-radius:var(--r);background:var(--gold);color:#0a0907;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s">Unlock Pro — €4.99</button>
-          <div style="font-size:10px;color:var(--text4);text-align:center;margin-top:8px">Payment handled securely via Stripe · Instant activation</div>
-        </div>
-
-        <!-- Tip jar -->
-        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:14px">
-          <div style="font-family:'Fraunces',serif;font-size:17px;font-weight:500;color:var(--text);margin-bottom:4px">Buy me a coffee ☕</div>
-          <div style="font-size:12px;color:var(--text3);margin-bottom:14px;line-height:1.7">No pressure. If Ćejf saved you a few bad shots, a tip means a lot to a solo builder.</div>
-          <div style="display:flex;gap:8px;margin-bottom:10px">
-            <button onclick="openTip(3)" style="flex:1;padding:11px 6px;border:1px solid var(--border2);border-radius:var(--r-sm);background:var(--bg3);color:var(--text3);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s">€3</button>
-            <button onclick="openTip(5)" style="flex:1;padding:11px 6px;border:1px solid var(--gold-dim);border-radius:var(--r-sm);background:var(--gold-soft);color:var(--gold);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.15s">€5 ✦</button>
-            <button onclick="openTip(10)" style="flex:1;padding:11px 6px;border:1px solid var(--border2);border-radius:var(--r-sm);background:var(--bg3);color:var(--text3);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s">€10</button>
-            <button onclick="openTip('custom')" style="flex:1;padding:11px 6px;border:1px solid var(--border2);border-radius:var(--r-sm);background:var(--bg3);color:var(--text3);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s">Other</button>
-          </div>
-        </div>
-
-        <!-- Pro status if already unlocked -->
-        <div id="pro-active-card" style="display:none;background:rgba(90,158,104,0.08);border:1px solid rgba(90,158,104,0.2);border-radius:var(--r);padding:14px;margin-bottom:14px">
-          <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:3px">✓ Pro unlocked</div>
-          <div style="font-size:11px;color:var(--text3)">All AI features are active. Thank you for supporting Ćejf.</div>
-        </div>
-
         <!-- Free features -->
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:14px">
-          <div style="font-family:'Fraunces',serif;font-size:17px;font-weight:500;color:var(--text);margin-bottom:12px">Always free</div>
+          <div style="font-family:'Fraunces',serif;font-size:17px;font-weight:500;color:var(--text);margin-bottom:12px">Everything, free</div>
           <div style="display:flex;flex-direction:column;gap:7px">
             <div style="font-size:12px;color:var(--text3);display:flex;gap:9px"><span style="color:var(--green);flex-shrink:0">✓</span>Full diagnostic engine with origin-linked recommendations</div>
             <div style="font-size:12px;color:var(--text3);display:flex;gap:9px"><span style="color:var(--green);flex-shrink:0">✓</span>Shot logging, history, statistics</div>
             <div style="font-size:12px;color:var(--text3);display:flex;gap:9px"><span style="color:var(--green);flex-shrink:0">✓</span>Machine setup, maintenance reminders</div>
             <div style="font-size:12px;color:var(--text3);display:flex;gap:9px"><span style="color:var(--green);flex-shrink:0">✓</span>Bean profiles, flavour wheel, bag history</div>
-            <div style="font-size:12px;color:var(--text3);display:flex;gap:9px"><span style="color:var(--green);flex-shrink:0">✓</span>Puck diagnostics, pour-over mode</div>
+            <div style="font-size:12px;color:var(--text3);display:flex;gap:9px"><span style="color:var(--green);flex-shrink:0">✓</span>Puck diagnostics, pour-over mode with recipes</div>
+            <div style="font-size:12px;color:var(--text3);display:flex;gap:9px"><span style="color:var(--green);flex-shrink:0">✓</span>AI label scanner — point camera at any coffee bag</div>
+            <div style="font-size:12px;color:var(--text3);display:flex;gap:9px"><span style="color:var(--green);flex-shrink:0">✓</span>AI shot notes interpretation</div>
             <div style="font-size:12px;color:var(--text3);display:flex;gap:9px"><span style="color:var(--green);flex-shrink:0">✓</span>Your data stays on your device — no account, no cloud</div>
           </div>
         </div>
@@ -883,7 +844,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 <script>
 // ══ STATE ════════════════════════════════════════════════════════════════════
 const P={dose:18,yield:36,time:28,temp:93,grind:90,tamp:'medium',distrib:'good',basket:18,preinf:3,prepause:3,pressure:9,opvActivated:false};
-const PO={dose:15,water:250,temp:93,grind:225,bloomTime:45,totalTime:210,brewer:'v60',filter:'paper'};
+const PO={dose:15,water:250,temp:93,grind:225,bloomTime:45,totalTime:210,brewer:'v60',filter:'paper',recipe:'standard'};
 const M={opv:9};
 const C={name:'',country:'',region:'',variety:'',varieties:[],roast:'medium',process:'washed',daysOld:null,altitude:'',flavorNotes:[],bestGrind:''};
 // Machine setup — permanent rig profile
@@ -897,7 +858,7 @@ const RIG={
   maint:{lastDescale:null,lastBackflush:null,lastGasket:null,lastBurrs:null,lastPuckScreen:null},
   reminders:{} // {id: {enabled:bool, intervalDays:number, nextDue:timestamp}}
 };
-let taste=null,puck=null,intensity=3,shots=[],bags=[],brewMode='espresso',histFilter='10';
+let tastes={},puck=null,shots=[],bags=[],brewMode='espresso',histFilter='10';
 let _scanData=null,currentArticle=null;
 
 // Timer state
@@ -907,7 +868,7 @@ let _timerMs=0,_timerRunning=false,_timerInterval=null;
 function sv(k,v){try{localStorage.setItem('c3_'+k,JSON.stringify(v));}catch(e){}}
 function ld(k,fb){try{const d=localStorage.getItem('c3_'+k);return d!=null?JSON.parse(d):fb;}catch(e){return fb;}}
 function persist(){
-  sv('shots',shots);sv('bags',bags);
+  sv('shots',shots);sv('bags',bags);sv('tastes',tastes);
   sv('P',P);sv('PO',PO);sv('M',M);sv('C',C);sv('RIG',RIG);
   // legacy compat
   sv('machine',RIG.machine);sv('grinder',RIG.grinder);
@@ -929,6 +890,7 @@ function restore(){
     RIG.basketType=ld('BT','stock');
   }
   brewMode=ld('brewMode','espresso');
+  const savedTastes=ld('tastes',null);if(savedTastes&&typeof savedTastes==='object')tastes=savedTastes;
 }
 // Shims for code that still uses old variable names
 
@@ -955,7 +917,6 @@ function setView(v){
   if(v==='stats')renderStats();
   if(v==='machine')renderMachine();
   if(v==='learn')renderLearn();
-  if(v==='support')renderProState();
 }
 
 // ══ MODE ═════════════════════════════════════════════════════════════════════
@@ -965,7 +926,7 @@ function setMode(m){
   document.getElementById('mode-po').classList.toggle('on',m==='pourover');
   document.getElementById('mode-lbl').textContent=m==='espresso'?'Espresso':'Pour Over';
   document.getElementById('log-btn').textContent=m==='espresso'?'LOG THIS SHOT':'LOG THIS BREW';
-  renderTasteGrid();rebuildGrindSlider();if(taste)renderDiag();persist();
+  renderTasteGrid();rebuildGrindSlider();if(primaryTaste())renderDiag();persist();
   updateChips();
 }
 
@@ -992,7 +953,7 @@ function timerToggle(){
     updateTimerDisplay(secs);
     // Show puck picker after shot is pulled
     renderPuckPicker();
-    if(taste)renderDiag();
+    if(primaryTaste())renderDiag();
   } else {
     // Start
     clearInterval(_timerInterval);
@@ -1090,7 +1051,8 @@ function updateDialinStrip(){
   const bagLbl=C.name?C.name:'Recent shots';
   strip.innerHTML=`<div class="dialin-label" style="flex-shrink:0;max-width:60px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${bagLbl}">${bagLbl}</div>`+
   recent.map((s,i)=>{
-    const tObj=tastes.find(t=>t.id===s.taste)||{emoji:'☕',color:'var(--text4)'};
+    const tList=s.brewMode==='pourover'?TASTES_PO:TASTES_ESP;
+    const tObj=tList.find(t=>t.id===s.taste)||{emoji:'☕',color:'var(--text4)',id:s.taste};
     const grindLbl=clicks2lbl(parseFloat(s.grind));
     return`<div class="dialin-dot" title="${tObj.id} · ${grindLbl}">
       <div class="dialin-ico" style="background:${tObj.color}22;border-color:${tObj.color}66">${tObj.emoji}</div>
@@ -1266,7 +1228,7 @@ function makeSl(key,containerId,cfg){
     if(f)f.style.width=pct2+'%';if(th)th.style.left=pct2+'%';if(vl)vl.textContent=disp2;
     // Sync timer if shot time slider moved
     if(cfg.key==='time'&&!_timerRunning){_timerMs=P.time*1000;updateTimerDisplay(P.time);}
-    updateChips();persist();if(taste)renderDiag();
+    updateChips();persist();if(primaryTaste())renderDiag();
   }
   trk.addEventListener('mousedown',e=>{e.preventDefault();apply(e.clientX);
     const mm=ev=>apply(ev.clientX);const mu=()=>{document.removeEventListener('mousemove',mm);document.removeEventListener('mouseup',mu);};
@@ -1294,24 +1256,24 @@ function stepOPV(d){RIG.opv=Math.max(6,Math.min(15,parseFloat((RIG.opv+d).toFixe
 
 // ══ PUCK CONTROLS ════════════════════════════════════════════════════════════
 const BASKET_TYPES={stock:{diag:''},ims:{diag:''},vst:{diag:'VST: adds flow resistance — may need 2–3 clicks coarser vs stock.'},pesado:{diag:'Pesado deep basket — higher dose needed to fill.'},other_basket:{diag:''}};
-function setBasket(v){P.basket=v;document.querySelectorAll('#basket-pills .pill').forEach(b=>b.classList.toggle('on',parseInt(b.textContent)===v));persist();if(taste)renderDiag();}
-function setPF(v){RIG.portafilter=v;document.getElementById('pf-spouted')?.classList.toggle('on',v==='spouted');document.getElementById('pf-bottomless')?.classList.toggle('on',v==='bottomless');persist();if(taste)renderDiag();}
+function setBasket(v){P.basket=v;document.querySelectorAll('#basket-pills .pill').forEach(b=>b.classList.toggle('on',parseInt(b.textContent)===v));persist();if(primaryTaste())renderDiag();}
+function setPF(v){RIG.portafilter=v;document.getElementById('pf-spouted')?.classList.toggle('on',v==='spouted');document.getElementById('pf-bottomless')?.classList.toggle('on',v==='bottomless');persist();if(primaryTaste())renderDiag();}
 function setTamp(v){
   P.tamp=v;
   document.querySelectorAll('#tamp-pills .pill').forEach(b=>{
     const t=b.textContent.trim().toLowerCase();
     b.classList.toggle('on',t===v||(v==='medium'&&t==='normal'));
   });
-  persist();if(taste)renderDiag();
+  persist();if(primaryTaste())renderDiag();
 }
 function setDistrib(v){
   P.distrib=v;
   document.querySelectorAll('#distrib-pills .pill').forEach(b=>{
     const t=b.textContent.trim().toLowerCase();b.classList.toggle('on',t===v||(v==='good'&&t.includes('wdt')));
   });
-  persist();if(taste)renderDiag();
+  persist();if(primaryTaste())renderDiag();
 }
-function setBasketType(v){RIG.basketType=v;persist();if(taste)renderDiag();}
+function setBasketType(v){RIG.basketType=v;persist();if(primaryTaste())renderDiag();}
 
 // ══ PARAMS SHEET ════════════════════════════════════════════════════════════
 function openParamsSheet(){
@@ -1338,6 +1300,7 @@ function renderParamsSheetBody(){
     const br=document.getElementById('po-brewer');if(br)br.value=PO.brewer;
     const fi=document.getElementById('po-filter');if(fi)fi.value=PO.filter;
     setPOBrewer(PO.brewer);
+    renderPORecipeVariants();
     const gs=document.getElementById('po-grinder-sel');if(gs)gs.value=RIG.grinder;
   } else {
     body.innerHTML=buildEspParamsHTML();
@@ -1397,27 +1360,86 @@ function setOPVActivated(v){
   if(v&&pills[1])pills[1].classList.add('on');
   const note=document.getElementById('opv-note');
   if(note)note.innerHTML=v?'⚠ OPV activated = pressure spike = channeling risk + astringency. Grind coarser to reduce puck resistance.':'Stable pressure = even extraction. Good baseline.';
-  persist();if(taste)renderDiag();
+  persist();if(primaryTaste())renderDiag();
 }
 function closePSheet(){document.getElementById('params-sheet').classList.remove('open');document.getElementById('params-overlay').classList.remove('open');}
 
 
 const PO_BREWERS={
-  v60:{name:'Hario V60',grindHint:'Medium-fine. ~3.0.0–4.0.0 on J-Max S.',note:'Spiral pour. Technique-dependent. Target 2:30–3:30.',recipe:'15g / 250ml. Bloom 50g × 45s. 3 staged pours.',tempNote:'92–95°C. Light roasts up to 96°C.'},
-  chemex:{name:'Chemex',grindHint:'Medium-coarse. ~4.0.0–5.0.0.',note:'Thick filter = slower flow, cleaner cup. Forgiving.',recipe:'30g / 500ml. Bloom 90g × 45s. 2 main pours.',tempNote:'90–94°C.'},
-  kalita:{name:'Kalita Wave',grindHint:'Medium. ~3.5.0–4.5.0.',note:'Flat bottom = forgiving. Even extraction.',recipe:'15g / 250ml. Bloom 50g × 40s. Steady centre pours.',tempNote:'91–94°C.'},
-  origami:{name:'Origami',grindHint:'Medium-fine. Similar to V60.',note:'Works with V60 or Kalita filters.',recipe:'15g / 250ml. Bloom 45g × 40s.',tempNote:'91–95°C.'},
-  aeropress:{name:'AeroPress',grindHint:'Medium-fine to fine.',note:'Inverted or standard. Very forgiving.',recipe:'15g / 200–240ml. 2–3 min steep + press.',tempNote:'80–95°C. Experiment widely.'},
-  frenchpress:{name:'French Press',grindHint:'Coarse. ~5.0.0–6.0.0.',note:'Full immersion. Unfiltered — more body.',recipe:'15g / 250ml. 4 min steep. Slow plunge.',tempNote:'93–96°C.'},
-  moka:{name:'Moka Pot',grindHint:'Medium-fine, coarser than espresso.',note:'Stovetop ~1–2 bar. Pre-heat water.',recipe:'Fill basket level, no tamp. Pre-heat base water.',tempNote:'Medium-low heat to avoid scorching.'},
-  other_brewer:{name:'Other brewer',grindHint:'Adjust to brewer range.',note:'',recipe:'',tempNote:''},
+  v60:{name:'Hario V60',grindHint:'Medium-fine. ~3.0.0–4.0.0 on J-Max S.',note:'Spiral pour. Technique-dependent. Target 2:30–3:30.',tempNote:'92–95°C. Light roasts up to 96°C.',
+    recipes:{
+      standard:{label:'Standard (3 pours)',recipe:'15g / 250ml. Bloom 45g × 45s. 3 staged pours.'},
+      kasuya:{label:'Tetsu Kasuya 4:6',recipe:'20g / 300ml. 5 pours of 60ml each, 45s apart. First 2 pours control acidity, last 3 control strength.'},
+      rao:{label:'Scott Rao (SSTT)',recipe:'Bloom 2× dose × 30–45s. Pour in continuous slow spiral to total. Target 3:00.'},
+    }
+  },
+  chemex:{name:'Chemex',grindHint:'Medium-coarse. ~4.0.0–5.0.0.',note:'Thick filter = slower flow, cleaner cup. Forgiving.',tempNote:'90–94°C.',
+    recipes:{
+      standard:{label:'Standard (2 pours)',recipe:'30g / 500ml. Bloom 90g × 45s. 2 main pours.'},
+      rao:{label:'Continuous pour',recipe:'Bloom 60g × 45s then pour continuously in slow spiral to total weight. Target 4:00–5:00.'},
+    }
+  },
+  kalita:{name:'Kalita Wave',grindHint:'Medium. ~3.5.0–4.5.0.',note:'Flat bottom = forgiving. Even extraction.',tempNote:'91–94°C.',
+    recipes:{
+      standard:{label:'Standard (3 stages)',recipe:'15g / 250ml. Bloom 50g × 40s. Steady centre pours.'},
+      osmotic:{label:'Osmotic flow',recipe:'Bloom 40g × 30s. Then pour in small circles staying near centre. 4–5 pours of ~50ml.'},
+    }
+  },
+  origami:{name:'Origami',grindHint:'Medium-fine. Similar to V60.',note:'Works with V60 or Kalita filters.',tempNote:'91–95°C.',
+    recipes:{
+      v60style:{label:'V60 style',recipe:'15g / 250ml. Bloom 45g × 40s. 3 spiral pours.'},
+      kalitastyle:{label:'Kalita style',recipe:'15g / 250ml. Bloom 45g × 40s. Steady centre pours to total.'},
+    }
+  },
+  aeropress:{name:'AeroPress',grindHint:'Medium-fine to fine.',note:'Very forgiving. Wide temperature range.',tempNote:'80–95°C. Experiment widely.',
+    recipes:{
+      inverted:{label:'Inverted (recommended)',recipe:'15g / 200ml. Inverted. Add water, stir × 10, steep 2min, flip & press 30s.'},
+      standard:{label:'Standard',recipe:'15g / 240ml. Standard position. Pour in 30s, stir, press gently from 1:30 to 2:00.'},
+      bypass:{label:'Bypass (concentrate)',recipe:'15g / 120ml at 85°C. Standard. Press at 1:30. Dilute with 80ml hot water.'},
+      james:{label:"James Hoffmann's Ultimate",recipe:'15g / 240ml at 90°C. No bypass. Inverted, fill completely. Stir. 2:00 total steep. Flip and press 30s.'},
+    }
+  },
+  frenchpress:{name:'French Press',grindHint:'Coarse. ~5.0.0–6.0.0.',note:'Full immersion. Unfiltered — more body.',tempNote:'93–96°C.',
+    recipes:{
+      standard:{label:'Standard (4 min)',recipe:'15g / 250ml. Pour all water at once. Stir. 4 min steep. Break crust, skim foam, press slowly.'},
+      hoffmann:{label:"James Hoffmann's method",recipe:'15g / 250ml. Pour all water. 4 min steep. Stir top crust × 3. Skim foam. Wait 5 min more. Decant without pressing.'},
+    }
+  },
+  moka:{name:'Moka Pot',grindHint:'Medium-fine, coarser than espresso.',note:'Stovetop ~1–2 bar. Pre-heat water.',tempNote:'Medium-low heat to avoid scorching.',
+    recipes:{
+      standard:{label:'Standard',recipe:'Fill basket level, no tamp. Pre-heat base water to near-boil. Medium-low heat. Remove at first gurgle.'},
+      cold:{label:'Cold water start',recipe:'Fill basket. Start with cold water, medium heat. Slower ramp = sweeter extraction.'},
+    }
+  },
+  other_brewer:{name:'Other brewer',grindHint:'Adjust to brewer range.',note:'',tempNote:'',
+    recipes:{standard:{label:'Custom',recipe:''}}
+  },
 };
 function setPOBrewer(v){
   PO.brewer=v;
+  if(!PO.recipe||!PO_BREWERS[v]?.recipes?.[PO.recipe])PO.recipe=Object.keys(PO_BREWERS[v]?.recipes||{})[0]||'standard';
   const b=PO_BREWERS[v];if(!b)return;
   const note=document.getElementById('po-brewer-note');
-  if(note)note.innerHTML=`<b style="color:var(--text2)">${b.name}</b><br/>${b.note}${b.recipe?`<br/><span style="color:var(--text3)">${b.recipe}</span>`:''}${b.tempNote?`<br/><span style="color:var(--amber)">${b.tempNote}</span>`:''}`;
-  updatePORecipeNote();persist();if(taste)renderDiag();
+  if(note)note.innerHTML='<b style="color:var(--text2)">'+b.name+'</b><br/>'+b.grindHint+(b.note?'<br/>'+b.note:'')+(b.tempNote?'<br/><span style="color:var(--amber)">'+b.tempNote+'</span>':'');
+  renderPORecipeVariants();
+  updatePORecipeNote();persist();if(primaryTaste())renderDiag();
+}
+function renderPORecipeVariants(){
+  const b=PO_BREWERS[PO.brewer];
+  const el=document.getElementById('po-recipe-variants');if(!el)return;
+  const recipes=b?.recipes||{};
+  const keys=Object.keys(recipes);
+  if(keys.length<=1){el.innerHTML='';return;}
+  if(!recipes[PO.recipe])PO.recipe=keys[0];
+  el.innerHTML='<div class="plbl" style="margin-top:8px">RECIPE STYLE</div>'
+    +'<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">'
+    +keys.map(k=>'<button onclick="selectPORecipe(\''+k+'\')" style="padding:6px 12px;border:1.5px solid '+(PO.recipe===k?'var(--gold-dim)':'var(--border)')+';border-radius:20px;background:'+(PO.recipe===k?'var(--gold-soft)':'var(--bg3)')+';color:'+(PO.recipe===k?'var(--gold)':'var(--text4)')+';font-family:inherit;font-size:11px;font-weight:'+(PO.recipe===k?'700':'500')+';cursor:pointer">'+recipes[k].label+'</button>').join('')
+    +'</div>'
+    +(recipes[PO.recipe]?.recipe?'<div style="font-size:11px;color:var(--text3);background:var(--bg3);padding:8px 10px;border-radius:var(--r-sm);line-height:1.7;margin-bottom:4px">'+recipes[PO.recipe].recipe+'</div>':'');
+}
+function selectPORecipe(key){
+  PO.recipe=key;persist();
+  renderPORecipeVariants();updatePORecipeNote();
 }
 function updatePORecipeNote(){
   const note=document.getElementById('po-recipe-note');if(!note)return;
@@ -1443,6 +1465,7 @@ function buildPOParamsHTML(){return`
       <option value="metal">Metal</option><option value="cloth">Cloth</option>
     </select></div>
     <div id="po-brewer-note" style="font-size:12px;color:var(--text4);padding:8px 10px;background:var(--bg3);border-radius:var(--r-sm);line-height:1.7;margin-bottom:4px"></div>
+    <div id="po-recipe-variants"></div>
   </div>
   <div class="s-sec">
     <div class="s-sec-title">Parameters</div>
@@ -1481,7 +1504,7 @@ function makePOSl(containerId,cfg){
     const disp2=cfg.unit===''?clicks2lbl(PO[cfg.key]):PO[cfg.key].toFixed(cfg.dec)+cfg.unit;
     const f=document.getElementById('slf-po-'+cfg.key),th=document.getElementById('slt-po-'+cfg.key),vl=document.getElementById('slv-po-'+cfg.key);
     if(f)f.style.width=pct2+'%';if(th)th.style.left=pct2+'%';if(vl)vl.textContent=disp2;
-    updatePORecipeNote();updateChips();persist();if(taste)renderDiag();
+    updatePORecipeNote();updateChips();persist();if(primaryTaste())renderDiag();
   }
   trk.addEventListener('mousedown',e=>{e.preventDefault();apply(e.clientX);const mm=ev=>apply(ev.clientX);const mu=()=>{document.removeEventListener('mousemove',mm);document.removeEventListener('mouseup',mu);};document.addEventListener('mousemove',mm);document.addEventListener('mouseup',mu);});
   let _poTouchSX=null,_poTouchSY=null,_poActive=false;
@@ -1894,7 +1917,6 @@ function updateOriginShortcuts(){
   el.innerHTML=`<div style="font-size:10px;color:var(--text4);margin-bottom:5px">Often associated with ${o.name} coffees — tap to add:</div><div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px">${pills}</div>`;
 }
 async function scanLabel(input){
-  if(!requirePro('scan')){if(input)input.value='';return;}
   if(!input.files||!input.files[0])return;
   const file=input.files[0];
   const lbl=document.getElementById('scan-lbl');if(lbl)lbl.textContent='⏳ Reading label…';
@@ -2771,6 +2793,8 @@ const PUCK_STATES=[
    note:'Ideal. Even extraction. Good tamp and distribution.'},
   {id:'dry_cracked',ico:'🕸',lbl:'Dry & cracked',flag:'⚠',diag:'channeling',
    note:'Cracked top = puck expanded against shower screen. Overdosed or over-tamped. Try reducing dose by 0.5g or tamping lighter.'},
+  {id:'dry_detached',ico:'⭕',lbl:'Dry, detached from rim',flag:'ℹ',diag:null,
+   note:'Nice puck but a clean gap around the rim = slightly under-dosed or grind is coarser than basket needs. Not a problem if taste is good. If sour or weak, try 0.5g more dose.'},
   {id:'wet_soggy',ico:'💧',lbl:'Wet / soggy',flag:'⚠',diag:'channeling',
    note:'Puck collapsed or watery = channeling. Water found fast paths. Distribution or grind issue — not contact time.'},
   {id:'wet_onesided',ico:'↔',lbl:'Wet one side',flag:'⚠',diag:'distribution',
@@ -2785,7 +2809,7 @@ function renderPuckPicker(){
   const grid=document.getElementById('puck-grid');
   if(!wrap||!grid)return;
   // Show whenever a taste has been selected
-  if(taste)wrap.style.display='block';
+  if(Object.keys(tastes).length)wrap.style.display='block';
   grid.innerHTML=PUCK_STATES.map(s=>`
     <button class="puck-btn${puck===s.id?' on':''}" onclick="selectPuck('${s.id}')">
       <div class="puck-btn-ico">${s.ico}</div>
@@ -2806,7 +2830,7 @@ function selectPuck(id){
     note.style.border=isOk?'1px solid rgba(90,158,104,0.2)':'1px solid rgba(217,95,69,0.15)';
     note.textContent=s.note;
   }
-  if(taste)renderDiag();
+  if(primaryTaste())renderDiag();
 }
 
 // ══ MACHINE TAB ══════════════════════════════════════════════════════════════
@@ -3193,66 +3217,127 @@ function stepRIG(key,d,min,max){
 }
 
 // ══ TASTES ══════════════════════════════════════════════════════════════════
+function primaryTaste(){
+  // Returns the highest-intensity selected taste, or first selected
+  const ids=Object.keys(tastes);
+  if(!ids.length)return null;
+  return ids.reduce((a,b)=>tastes[a]>=tastes[b]?a:b);
+}
 function renderTasteGrid(){
-  const tastes=brewMode==='pourover'?TASTES_PO:TASTES_ESP;
+  const list=brewMode==='pourover'?TASTES_PO:TASTES_ESP;
   const grid=document.getElementById('tgrid');if(!grid)return;
-  grid.innerHTML=tastes.map(t=>`<button class="tb${taste===t.id?' on':''}" onclick="selectTaste('${t.id}')" style="${taste===t.id?'border-color:'+t.color+';':''}">`+
-    `<div class="tb-ico">${t.emoji}</div><div class="tb-lbl"${taste===t.id?` style="color:${t.color}"`:''}>${t.lbl}</div></button>`).join('');
+  grid.innerHTML=list.map(t=>{
+    const on=tastes[t.id]!==undefined;
+    return`<button class="tb${on?' on':''}" onclick="toggleTaste('${t.id}')" style="${on?'border-color:'+t.color+';background:'+t.color+'18;':''}">`
+      +`<div class="tb-ico">${t.emoji}</div><div class="tb-lbl"${on?` style="color:${t.color}"`:''}>${t.lbl}</div></button>`;
+  }).join('');
+  renderTasteIntensities();
 }
-function setIntensity(n){
-  intensity=Math.max(1,Math.min(5,Math.round(n)));
-  const labels={1:'Subtle (1)',2:'Mild (2)',3:'Moderate (3)',4:'Strong (4)',5:'Intense (5)'};
-  const lbl=document.getElementById('intensity-lbl');
-  if(lbl)lbl.textContent=labels[intensity];
-  const pct=((intensity-1)/4)*100;
-  const fill=document.getElementById('intensity-fill');
-  const thumb=document.getElementById('intensity-thumb');
-  if(fill)fill.style.width=pct+'%';
-  if(thumb)thumb.style.left=pct+'%';
+function renderTasteIntensities(){
+  const list=brewMode==='pourover'?TASTES_PO:TASTES_ESP;
+  const el=document.getElementById('taste-intensities');if(!el)return;
+  const selected=list.filter(t=>tastes[t.id]!==undefined);
+  if(!selected.length){el.innerHTML='';return;}
+  el.innerHTML=selected.map(t=>{
+    const iv=tastes[t.id]||3;
+    const pct=((iv-1)/4)*100;
+    return`<div style="margin-bottom:12px;padding:10px 12px;background:var(--bg2);border:1px solid ${t.color}44;border-radius:var(--r-sm)">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+        <div style="font-size:12px;font-weight:600;color:${t.color}">${t.emoji} ${t.lbl}</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:11px;color:var(--text4)" id="ilab-${t.id}">${intensityLabel(iv)}</span>
+          <button onclick="removeTaste('${t.id}')" style="font-size:14px;color:var(--text4);background:none;border:none;cursor:pointer;padding:0 4px;line-height:1">×</button>
+        </div>
+      </div>
+      <div id="itrk-${t.id}" data-taste="${t.id}" style="position:relative;height:24px;cursor:pointer;touch-action:pan-y">
+        <div style="position:absolute;top:50%;left:0;right:0;height:3px;transform:translateY(-50%);background:var(--bg3);border-radius:2px"></div>
+        <div id="ifill-${t.id}" style="position:absolute;top:50%;left:0;height:3px;width:${pct}%;transform:translateY(-50%);background:${t.color};border-radius:2px;transition:width 0.1s"></div>
+        <div id="ithumb-${t.id}" style="position:absolute;top:50%;width:20px;height:20px;transform:translate(-50%,-50%);background:var(--surface);border:2.5px solid ${t.color};border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.4);left:${pct}%;transition:left 0.1s"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:3px">
+        <span style="font-size:9px;color:var(--text4)">Subtle</span>
+        <span style="font-size:9px;color:var(--text4)">Intense</span>
+      </div>
+    </div>`;
+  }).join('');
+  // Attach slider events to each
+  selected.forEach(t=>initTasteSlider(t.id,t.color));
 }
-function initIntensitySlider(){
-  const trk=document.getElementById('intensity-trk');if(!trk)return;
+function intensityLabel(n){
+  return['','Subtle','Mild','Moderate','Strong','Intense'][Math.round(n)]||'Moderate';
+}
+function initTasteSlider(id,color){
+  const trk=document.getElementById('itrk-'+id);if(!trk||trk._init)return;
+  trk._init=true;
   function applyX(cx){
     const r=trk.getBoundingClientRect();
     const frac=Math.max(0,Math.min(1,(cx-r.left)/r.width));
-    setIntensity(Math.round(frac*4)+1);
+    const n=Math.round(frac*4)+1;
+    tastes[id]=n;
+    const pct=((n-1)/4)*100;
+    const fill=document.getElementById('ifill-'+id);
+    const thumb=document.getElementById('ithumb-'+id);
+    const lbl=document.getElementById('ilab-'+id);
+    if(fill)fill.style.width=pct+'%';
+    if(thumb)thumb.style.left=pct+'%';
+    if(lbl)lbl.textContent=intensityLabel(n);
+    persist();
   }
   trk.addEventListener('mousedown',e=>{e.preventDefault();applyX(e.clientX);
     const mm=ev=>applyX(ev.clientX);
     const mu=()=>{document.removeEventListener('mousemove',mm);document.removeEventListener('mouseup',mu);};
     document.addEventListener('mousemove',mm);document.addEventListener('mouseup',mu);
   });
-  let _iSX=null,_iSY=null,_iActive=false;
-  trk.addEventListener('touchstart',e=>{_iSX=e.touches[0].clientX;_iSY=e.touches[0].clientY;_iActive=false;},{passive:true});
+  let _sx=null,_sy=null,_act=false;
+  trk.addEventListener('touchstart',e=>{_sx=e.touches[0].clientX;_sy=e.touches[0].clientY;_act=false;},{passive:true});
   trk.addEventListener('touchmove',e=>{
-    if(_iSX===null)return;
-    const dx=Math.abs(e.touches[0].clientX-_iSX),dy=Math.abs(e.touches[0].clientY-_iSY);
-    if(!_iActive){if(dy>dx){_iSX=null;return;}if(dx>6)_iActive=true;else return;}
+    if(_sx===null)return;
+    const dx=Math.abs(e.touches[0].clientX-_sx),dy=Math.abs(e.touches[0].clientY-_sy);
+    if(!_act){if(dy>dx){_sx=null;return;}if(dx>6)_act=true;else return;}
     e.preventDefault();applyX(e.touches[0].clientX);
   },{passive:false});
-  trk.addEventListener('touchend',()=>{_iSX=null;_iSY=null;_iActive=false;},{passive:true});
+  trk.addEventListener('touchend',()=>{_sx=null;_sy=null;_act=false;},{passive:true});
 }
-function selectTaste(id){
-  taste=id;renderTasteGrid();renderDiag();
-  renderPuckPicker();
-  // Show intensity row and init slider
-  const irow=document.getElementById('intensity-row');
-  if(irow&&irow.style.display==='none'){
-    irow.style.display='block';
-    initIntensitySlider();
+function toggleTaste(id){
+  if(tastes[id]!==undefined){
+    delete tastes[id];
+  } else {
+    tastes[id]=3; // default moderate
   }
-  setIntensity(intensity);
-  document.getElementById('log-btn').className='log-btn ready';
-  showTDSInput();persist();
+  renderTasteGrid();
+  // Show/hide puck picker and log button
+  const hasTaste=Object.keys(tastes).length>0;
+  renderPuckPicker();
+  document.getElementById('log-btn').className='log-btn'+(hasTaste?' ready':'');
+  if(hasTaste){renderDiag();showTDSInput();}
+  else{const a=document.getElementById('diag-area');if(a)a.innerHTML='';}
+  persist();
+}
+function removeTaste(id){
+  delete tastes[id];
+  toggleTaste.__skip=true;
+  renderTasteGrid();
+  const hasTaste=Object.keys(tastes).length>0;
+  renderPuckPicker();
+  document.getElementById('log-btn').className='log-btn'+(hasTaste?' ready':'');
+  if(hasTaste)renderDiag();
+  else{const a=document.getElementById('diag-area');if(a)a.innerHTML='';}
+  persist();
 }
 
 // ══ DIAGNOSTICS ══════════════════════════════════════════════════════════════
 function renderDiag(){
-  const area=document.getElementById('diag-area');if(!area||!taste)return;
-  const prevShot=getLastSameTaste(taste);
-  const recs=diagnose(taste,P,C,M,prevShot);
-  const tObj=(brewMode==='pourover'?TASTES_PO:TASTES_ESP).find(t=>t.id===taste);
+  const area=document.getElementById('diag-area');if(!area||!primaryTaste())return;
+  const pt=primaryTaste();
+  const prevShot=getLastSameTaste(pt);
+  const recs=diagnose(pt,P,C,M,prevShot);
+  const tObj=(brewMode==='pourover'?TASTES_PO:TASTES_ESP).find(t=>t.id===pt);
   if(!tObj){area.innerHTML='';return;}
+  const allTastes=brewMode==='pourover'?TASTES_PO:TASTES_ESP;
+  const selectedTasteLabels=Object.keys(tastes).map(id=>{
+    const t=allTastes.find(x=>x.id===id);
+    return t?`<span style="color:${t.color}">${t.emoji} ${t.lbl}</span>`:'';
+  }).filter(Boolean).join(' · ');
   const flags=buildFlags();
   const dir=brewMode==='pourover'?getPOGrindYieldDir(taste,PO,C):getGrindYieldDir(taste,P,C);
   const topBlock=dir?`<div class="diag-primary">
@@ -3274,7 +3359,7 @@ function renderDiag(){
   area.innerHTML=`<div class="diag-card" style="border-top-color:${tObj.color}">
     <div class="diag-hdr">
       <span style="font-size:22px;line-height:1">${tObj.emoji}</span>
-      <div><div class="diag-title" style="color:${tObj.color}">${tObj.lbl}</div>
+      <div><div class="diag-title">${selectedTasteLabels}</div>
       <div class="diag-sub">Tap any rec to expand reasoning</div></div>
     </div>
     ${topBlock}
@@ -3388,35 +3473,34 @@ function closeEditShot(){
 }
 
 function doLog(){
-  if(!taste)return;
-  const prevShot=getLastSameTaste(taste);
+  const pt=primaryTaste();if(!pt)return;
+  const prevShot=getLastSameTaste(pt);
   const tds=parseFloat(document.getElementById('tds-inp')?.value)||null;
   const ey=tds?(tds*(brewMode==='pourover'?PO.water:P.yield))/(brewMode==='pourover'?PO.dose:P.dose):null;
+  // taste = primary taste for compat; tastes = full object
   const s=brewMode==='pourover'
-    ?{id:Date.now(),brewMode,taste,intensity,puck,notes:document.getElementById('notes').value,
+    ?{id:Date.now(),brewMode,taste:pt,tastes:{...tastes},puck,notes:document.getElementById('notes').value,
        ...JSON.parse(JSON.stringify(PO)),...JSON.parse(JSON.stringify(C)),
        grinder:RIG.grinder,ratio:(PO.water/PO.dose).toFixed(2),tds,ey,
        logDate:new Date().toLocaleDateString([],{day:'2-digit',month:'short'}),
        logTime:new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}),
-       recs:diagnosePO(taste,PO,C)}
-    :{id:Date.now(),brewMode,taste,intensity,puck,notes:document.getElementById('notes').value,
+       recs:diagnosePO(pt,PO,C)}
+    :{id:Date.now(),brewMode,taste:pt,tastes:{...tastes},puck,notes:document.getElementById('notes').value,
        ...JSON.parse(JSON.stringify(P)),...JSON.parse(JSON.stringify(C)),
        machine:RIG.machine,grinder:RIG.grinder,portafilter:RIG.portafilter,basketType:RIG.basketType,
        ratio:(P.yield/P.dose).toFixed(2),tds,ey,
        logDate:new Date().toLocaleDateString([],{day:'2-digit',month:'short'}),
        logTime:new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}),
-       recs:diagnose(taste,P,C,M,prevShot),prevShotId:prevShot?.id||null};
+       recs:diagnose(pt,P,C,M,prevShot),prevShotId:prevShot?.id||null};
   shots.unshift(s);persist();
   const btn=document.getElementById('log-btn');
   btn.textContent='✓ LOGGED';btn.className='log-btn saved';
   updateRefBar();updateDialinStrip();
   setTimeout(()=>{
-    taste=null;puck=null;intensity=3;
+    tastes={};puck=null;
     renderTasteGrid();renderPuckPicker();
     document.getElementById('puck-wrap').style.display='none';
     const pn=document.getElementById('puck-note');if(pn)pn.remove();
-    const irow=document.getElementById('intensity-row');if(irow)irow.style.display='none';
-    setIntensity(3);
     document.getElementById('diag-area').innerHTML='';
     document.getElementById('notes').value='';
     const ti=document.getElementById('tds-inp');if(ti)ti.value='';
@@ -3459,8 +3543,15 @@ function renderLog(){
           <div class="shot-card-hdr">
             <div>
               <div style="font-size:10px;font-weight:600;color:${s.brewMode==='pourover'?'var(--blue)':'var(--gold)'};letter-spacing:0.5px;margin-bottom:2px">${s.brewMode==='pourover'?'POUR OVER':'ESPRESSO'}</div>
-              <div class="shot-taste" style="color:${tObj.color}">${tObj.emoji} ${tObj.lbl}${s.intensity&&s.intensity!==3?' · '+'●'.repeat(s.intensity):''}
-              </div>
+              <div class="shot-taste">${(()=>{
+                const list=s.brewMode==='pourover'?TASTES_PO:TASTES_ESP;
+                const ts=s.tastes&&Object.keys(s.tastes).length?s.tastes:{[s.taste]:s.intensity||3};
+                return Object.entries(ts).map(([tid,iv])=>{
+                  const t=list.find(x=>x.id===tid)||{emoji:'\u2615',color:'var(--text4)',lbl:tid};
+                  const dots=iv&&iv!==3?'\u25cf'.repeat(iv):'';
+                  return'<span style="color:'+t.color+';margin-right:8px">'+t.emoji+' '+t.lbl+(dots?' <span style="font-size:9px;opacity:0.7">'+dots+'</span>':'')+'</span>';
+                }).join('');
+              })()}</div>
             </div>
             <div style="display:flex;align-items:center;gap:7px">
               <button onclick="openEditShot(${s.id})" style="padding:4px 10px;border:1px solid var(--border2);border-radius:20px;background:none;color:var(--text4);font-family:inherit;font-size:10px;font-weight:600;cursor:pointer">Edit</button>
@@ -3661,7 +3752,6 @@ function obSkip(){sv('onboarded',true);document.getElementById('onboard').style.
 // ══ BOOT ════════════════════════════════════════════════════════════════════
 // ══ AI NOTES INTERPRETATION ══════════════════════════════════════════════════
 async function interpretNotes(){
-  if(!requirePro('ai-notes'))return;
   const notes=document.getElementById('notes')?.value?.trim();
   if(!notes||notes.length<10){
     const st=document.getElementById('ai-notes-status');
@@ -3721,44 +3811,50 @@ async function interpretNotes(){
   finally{if(btn)btn.textContent='✦ Interpret notes';}
 }
 
-// ══ PRO / MONETISATION ═══════════════════════════════════════════════════════
-let _proUnlocked=false;
-function loadProState(){_proUnlocked=ld('pro_unlocked',false);}
-function isProUnlocked(){return _proUnlocked;}
-function renderProState(){
-  const proCard=document.getElementById('pro-card');
-  const proActive=document.getElementById('pro-active-card');
-  if(_proUnlocked){
-    if(proCard)proCard.style.display='none';
-    if(proActive)proActive.style.display='block';
-  } else {
-    if(proCard)proCard.style.display='block';
-    if(proActive)proActive.style.display='none';
-  }
-}
-function handleProPurchase(){
-  // Placeholder — in production this opens Stripe Checkout or RevenueCat
-  // For now shows a coming soon message
-  const btn=document.getElementById('pro-btn');
-  if(btn){btn.textContent='Coming soon — payment not yet live';btn.style.background='var(--bg3)';btn.style.color='var(--text3)';}
-  setTimeout(()=>{if(btn){btn.textContent='Unlock Pro — €4.99';btn.style.background='var(--gold)';btn.style.color='#0a0907';}},3000);
-}
+// ══ SUPPORT / FEEDBACK ══════════════════════════════════════════════════════
 function openTip(amount){
-  // Placeholder — links to Ko-fi or Buy Me a Coffee
-  const url='https://ko-fi.com/cejf';
-  window.open(url,'_blank');
+  window.open('https://ko-fi.com/cejf','_blank');
 }
-// Guard AI features behind Pro check
-function requirePro(feature){
-  if(_proUnlocked)return true;
-  const msg=document.getElementById('ai-notes-status');
-  if(msg)msg.textContent='✦ Pro feature — unlock in the Support tab for €4.99';
-  setTimeout(()=>{if(msg&&msg.textContent.includes('Pro feature'))msg.textContent='';},3500);
-  return false;
+async function sendFeedback(){
+  const text=document.getElementById('feedback-text')?.value?.trim();
+  const email=document.getElementById('feedback-email')?.value?.trim();
+  const btn=document.getElementById('feedback-btn');
+  const status=document.getElementById('feedback-status');
+  if(!text||text.length<5){
+    if(status){status.textContent='Please write something first.';status.style.color='var(--red)';}
+    return;
+  }
+  if(btn){btn.textContent='Sending…';btn.disabled=true;}
+  if(status){status.textContent='';status.style.color='var(--text4)';}
+  try{
+    const resp=await fetch('https://formspree.io/f/mbdwkdnj',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        email:email||'anonymous',
+        message:text,
+        grinder:RIG.grinder,
+        machine:RIG.machine,
+        shots_logged:shots.length
+      })
+    });
+    const data=await resp.json();
+    if(resp.ok){
+      if(status){status.textContent='✓ Sent — thank you!';status.style.color='var(--green)';}
+      if(document.getElementById('feedback-text'))document.getElementById('feedback-text').value='';
+      if(document.getElementById('feedback-email'))document.getElementById('feedback-email').value='';
+    }else{
+      const errs=data?.errors?.map(e=>e.message).join(', ')||'Submission failed.';
+      if(status){status.textContent=errs;status.style.color='var(--red)';}
+    }
+  }catch(e){
+    if(status){status.textContent='No connection — try again later.';status.style.color='var(--red)';}
+  }
+  if(btn){btn.textContent='Send →';btn.disabled=false;}
 }
 
 function boot(){
-  restore();loadProState();initTheme();
+  restore();initTheme();
   M.opv=RIG.opv;
   renderTasteGrid();updateChips();updateCoffeeCard();updateRefBar();updateDialinStrip();
   updateTimerDisplay(0);
