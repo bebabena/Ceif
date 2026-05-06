@@ -459,7 +459,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
     <div class="ob-step active" id="ob-1">
       <div class="ob-num">STEP 1 OF 2</div>
       <div class="ob-title">Your equipment</div>
-      <div class="ob-body">Select your machine and grinder so Ćejf can calibrate recommendations to your setup.</div>
+      <div class="ob-body">Select your machine and grinder so Ćejf can calibrate recommendations to your setup. <span style="color:var(--text4)">You can skip this and set it up later in the Machine tab.</span></div>
       <div>
         <div class="plbl">MACHINE</div>
         <div class="sel-wrap"><select id="ob-machine">
@@ -490,6 +490,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
         </select></div>
       </div>
       <button class="ob-cta primary" onclick="obNext()">Continue →</button>
+      <button class="ob-cta secondary" onclick="obSkip()">Skip — I'll set this up later</button>
     </div>
     <div class="ob-step" id="ob-2">
       <div class="ob-num">STEP 2 OF 2</div>
@@ -686,7 +687,19 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
           <div id="feedback-status" style="font-size:11px;color:var(--text4);text-align:center;margin-top:8px;min-height:16px"></div>
         </div>
 
-        <!-- Pro unlock -->
+        <!-- Tip jar -->
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:14px">
+          <div style="font-family:'Fraunces',serif;font-size:17px;font-weight:500;color:var(--text);margin-bottom:4px">Buy me a coffee ☕</div>
+          <div style="font-size:12px;color:var(--text3);margin-bottom:14px;line-height:1.7">No pressure. If Ćejf saved you a few bad shots, a tip means a lot to a solo builder.</div>
+          <div style="display:flex;gap:8px;margin-bottom:4px">
+            <button onclick="openTip(3)" style="flex:1;padding:11px 6px;border:1px solid var(--border2);border-radius:var(--r-sm);background:var(--bg3);color:var(--text3);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s">€3</button>
+            <button onclick="openTip(5)" style="flex:1;padding:11px 6px;border:1px solid var(--gold-dim);border-radius:var(--r-sm);background:var(--gold-soft);color:var(--gold);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.15s">€5 ✦</button>
+            <button onclick="openTip(10)" style="flex:1;padding:11px 6px;border:1px solid var(--border2);border-radius:var(--r-sm);background:var(--bg3);color:var(--text3);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s">€10</button>
+            <button onclick="openTip('custom')" style="flex:1;padding:11px 6px;border:1px solid var(--border2);border-radius:var(--r-sm);background:var(--bg3);color:var(--text3);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s">Other</button>
+          </div>
+          <div style="font-size:10px;color:var(--text4);text-align:center;margin-top:6px">Opens Ko-fi · No account needed</div>
+        </div>
+
         <!-- Free features -->
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:14px">
           <div style="font-family:'Fraunces',serif;font-size:17px;font-weight:500;color:var(--text);margin-bottom:12px">Everything, free</div>
@@ -3831,7 +3844,7 @@ async function sendFeedback(){
       method:'POST',
       headers:{'Content-Type':'application/json','Accept':'application/json'},
       body:JSON.stringify({
-        email:email||'anonymous',
+        email:email||'no-reply@cejf.app',
         message:text,
         grinder:RIG.grinder,
         machine:RIG.machine,
