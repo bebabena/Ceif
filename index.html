@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="apple-mobile-web-app-title" content="Ćeif"/>
+<meta name="apple-mobile-web-app-title" content="Ćejf — Coffee Dial-in &amp; Diagnostics"/>
 <link rel="apple-touch-icon" href="icon.svg"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="theme-color" content="#0a0907"/>
-<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjEwMCIgZmlsbD0iIzBhMDkwNyIvPgogIDxjaXJjbGUgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMjAwIiBmaWxsPSIjMWExNTEwIiBzdHJva2U9IiMzYTJlMTgiIHN0cm9rZS13aWR0aD0iOCIvPgogIDxwYXRoIGQ9Ik0xNjAgMzcwUTE1NSAyNzAgMTcwIDIwMFExOTAgMTMwIDI1NiAxMzBRMzIyIDEzMCAzNDIgMjAwUTM1NyAyNzAgMzUyIDM3MFEzNTIgMzgwIDI1NiAzODBRMTYwIDM4MCAxNjAgMzcwWiIgZmlsbD0iI2M4OTAzYSIvPgogIDxlbGxpcHNlIGN4PSIyNTYiIGN5PSIzNzgiIHJ4PSI5NiIgcnk9IjIyIiBmaWxsPSIjOWE2ODI4Ii8+CiAgPHBhdGggZD0iTTM0MiAyMTVRNDAwIDIxMCA0MDAgMjU1UTQwMCAzMDAgMzQyIDI4NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzg5MDNhIiBzdHJva2Utd2lkdGg9IjE4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8ZWxsaXBzZSBjeD0iMjU2IiBjeT0iMTMyIiByeD0iODYiIHJ5PSIyMCIgZmlsbD0iIzBhMDkwNyIvPgogIDx0ZXh0IHg9IjI1NiIgeT0iMjkwIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSIxMDAiIGZvbnQtd2VpZ2h0PSIzMDAiIGZpbGw9IiNjOWE1NWEiIHRleHQtYW5jaG9yPSJtaWRkbGUiPsSGPC90ZXh0Pgo8L3N2Zz4K"/>
-<title>Ćeif</title>
+<link rel="manifest" href="manifest.json"/>
+<title>Ćejf — Coffee Dial-in &amp; Diagnostics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
@@ -93,7 +93,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;font-size:15px;line-height:1.5;-
 .scr::-webkit-scrollbar{display:none}
 
 /* ── NAV ── */
-.nav{height:var(--nav-h);display:flex;align-items:stretch;border-top:1px solid var(--border);background:var(--bg);flex-shrink:0;padding-bottom:env(safe-area-inset-bottom,0)}
+.nav{height:var(--nav-h);display:grid;grid-template-columns:repeat(6,1fr);align-items:stretch;border-top:1px solid var(--border);background:var(--bg);flex-shrink:0;padding-bottom:env(safe-area-inset-bottom,0)}
 .nb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:none;background:none;color:var(--text4);cursor:pointer;font-family:inherit;transition:color 0.15s;padding:8px 0;position:relative}
 .nb.active{color:var(--gold)}
 .nb-ico{font-size:18px;line-height:1}
@@ -321,7 +321,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;font-size:15px;line-height:1.5;-
 .shot-params{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}
 .shot-p{font-size:12px;color:var(--text3);font-weight:500}
 .shot-p span{color:var(--text4);font-weight:400}
-.shot-bean{font-size:11px;color:var(--text4);margin-bottom:4px}
+.shot-bean{font-size:11px;color:var(--text4);margin-bottom:5px;padding:6px 8px;background:var(--bg3);border-radius:var(--r-sm)}
 .shot-note{font-size:11px;color:var(--text3);font-style:italic;margin-bottom:6px}
 .shot-recs{border-top:1px solid var(--border);padding-top:9px;margin-top:4px}
 .shot-recs-lbl{font-size:10px;color:var(--text4);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
@@ -459,7 +459,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
     <div class="ob-step active" id="ob-1">
       <div class="ob-num">STEP 1 OF 2</div>
       <div class="ob-title">Your equipment</div>
-      <div class="ob-body">Select your machine and grinder so Ćeif can calibrate recommendations to your setup.</div>
+      <div class="ob-body">Select your machine and grinder so Ćejf can calibrate recommendations to your setup.</div>
       <div>
         <div class="plbl">MACHINE</div>
         <div class="sel-wrap"><select id="ob-machine">
@@ -537,8 +537,12 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
   <!-- HEADER -->
   <div class="hdr">
     <div class="brand">
-      <svg width="28" height="28" viewBox="0 0 30 30"><circle cx="15" cy="15" r="14" fill="#1a1510" stroke="#3a2e18" stroke-width="1"/><path d="M8 24Q7.5 16 8.5 11Q10 7 15 7Q20 7 21.5 11Q22.5 16 22 24Q22 25 15 25Q8 25 8 24Z" fill="#c8903a"/><ellipse cx="15" cy="24.5" rx="7" ry="1.8" fill="#9a6828"/><path d="M21.5 13Q26 12 26 16Q26 20 21.5 18.5" fill="none" stroke="#c8903a" stroke-width="2" stroke-linecap="round"/><ellipse cx="15" cy="7.5" rx="6.5" ry="1.6" fill="#12100a"/></svg>
-      <div><div class="brand-name">Ćeif</div><div class="brand-mode" id="mode-lbl">Espresso</div></div>
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="16" cy="16" r="15" fill="#1a1408" stroke="#c8903a" stroke-width="1.2"/>
+        <circle cx="16" cy="16" r="11.5" fill="none" stroke="#3a2810" stroke-width="0.6"/>
+        <text x="16" y="20.5" text-anchor="middle" font-family="Georgia,serif" font-size="9.5" font-weight="700" fill="#c8903a" letter-spacing="0.5">Ćejf</text>
+      </svg>
+      <div><div class="brand-name">Ćejf</div><div class="brand-mode" id="mode-lbl">Espresso</div></div>
     </div>
     <div class="hdr-r">
       <div class="mode-pill"><button class="on" id="mode-esp" onclick="setMode('espresso')">☕</button><button id="mode-po" onclick="setMode('pourover')">🫗</button></div>
@@ -608,6 +612,23 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
       <div class="taste-lbl">How did it taste?</div>
       <div class="tgrid" id="tgrid"></div>
 
+      <!-- Intensity slider - appears after taste selected -->
+      <div id="intensity-row" style="display:none;margin:-6px 0 14px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <div style="font-size:10px;font-weight:600;color:var(--text4);letter-spacing:0.5px">INTENSITY</div>
+          <div style="font-size:12px;font-weight:600;color:var(--text3)" id="intensity-lbl">Moderate (3)</div>
+        </div>
+        <div id="intensity-trk" style="position:relative;height:28px;cursor:pointer;touch-action:pan-y">
+          <div style="position:absolute;top:50%;left:0;right:0;height:4px;transform:translateY(-50%);background:var(--bg3);border-radius:2px"></div>
+          <div id="intensity-fill" style="position:absolute;top:50%;left:0;height:4px;width:50%;transform:translateY(-50%);background:var(--gold);border-radius:2px;transition:width 0.15s"></div>
+          <div id="intensity-thumb" style="position:absolute;top:50%;width:22px;height:22px;transform:translate(-50%,-50%);background:var(--surface);border:2.5px solid var(--gold);border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.5);left:50%;transition:left 0.15s"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:4px">
+          <span style="font-size:9px;color:var(--text4)">Subtle</span>
+          <span style="font-size:9px;color:var(--text4)">Intense</span>
+        </div>
+      </div>
+
       <!-- Diagnostics -->
       <div id="diag-area"></div>
 
@@ -625,7 +646,11 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
       </div>
 
       <!-- Notes + Log -->
-      <textarea class="notes-inp" id="notes" placeholder="Notes (optional)…"></textarea>
+      <textarea class="notes-inp" id="notes" placeholder="Describe your shot… AI can interpret your notes"></textarea>
+      <div style="display:flex;gap:8px;margin-bottom:10px;margin-top:-6px">
+        <button id="ai-notes-btn" onclick="interpretNotes()" style="flex:1;padding:9px;border:1px solid var(--gold-dim);border-radius:var(--r-sm);background:var(--gold-soft);color:var(--gold);font-family:inherit;font-size:11px;font-weight:700;cursor:pointer">✦ Interpret notes</button>
+        <div id="ai-notes-status" style="font-size:11px;color:var(--text4);align-self:center;flex:2;line-height:1.5"></div>
+      </div>
       <button class="log-btn" id="log-btn" onclick="doLog()">LOG THIS SHOT</button>
       <div style="height:6px"></div>
     </div>
@@ -659,6 +684,76 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
       <div id="machine-content"></div>
     </div>
 
+    <!-- ══ SUPPORT ══ -->
+    <div class="view" id="view-support">
+      <div style="padding:16px 18px 80px">
+        <div style="font-family:'Fraunces',serif;font-size:26px;font-weight:500;color:var(--text);margin-bottom:4px">Support Ćejf</div>
+        <div style="font-size:12px;color:var(--text3);margin-bottom:20px;line-height:1.7">Ćejf is built by one person, kept free for the community. If it's helped you dial in a better shot, consider supporting its development.</div>
+
+        <!-- Pro unlock -->
+        <div id="pro-card" style="background:var(--bg2);border:1.5px solid var(--gold-dim);border-radius:var(--r);padding:18px;margin-bottom:14px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div style="font-size:24px">✦</div>
+            <div>
+              <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:500;color:var(--gold)" id="pro-title">Ćejf Pro</div>
+              <div style="font-size:11px;color:var(--text4);margin-top:1px" id="pro-status-lbl">Unlock AI-powered features</div>
+            </div>
+            <div style="margin-left:auto;font-family:'Fraunces',serif;font-size:20px;font-weight:500;color:var(--gold)" id="pro-price">€4.99</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px">
+            <div style="display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--text3)"><span style="color:var(--gold);flex-shrink:0">✓</span>Label scanning — point camera at any bag, Claude reads it</div>
+            <div style="display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--text3)"><span style="color:var(--gold);flex-shrink:0">✓</span>AI notes interpretation — describe your shot, get specific advice</div>
+            <div style="display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--text3)"><span style="color:var(--gold);flex-shrink:0">✓</span>All future AI features as they're added</div>
+            <div style="display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--text3)"><span style="color:var(--gold);flex-shrink:0">✓</span>One-time payment, no subscription</div>
+          </div>
+          <button id="pro-btn" onclick="handleProPurchase()" style="width:100%;padding:14px;border:none;border-radius:var(--r);background:var(--gold);color:#0a0907;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s">Unlock Pro — €4.99</button>
+          <div style="font-size:10px;color:var(--text4);text-align:center;margin-top:8px">Payment handled securely via Stripe · Instant activation</div>
+        </div>
+
+        <!-- Tip jar -->
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:14px">
+          <div style="font-family:'Fraunces',serif;font-size:17px;font-weight:500;color:var(--text);margin-bottom:4px">Buy me a coffee ☕</div>
+          <div style="font-size:12px;color:var(--text3);margin-bottom:14px;line-height:1.7">No pressure. If Ćejf saved you a few bad shots, a tip means a lot to a solo builder.</div>
+          <div style="display:flex;gap:8px;margin-bottom:10px">
+            <button onclick="openTip(3)" style="flex:1;padding:11px 6px;border:1px solid var(--border2);border-radius:var(--r-sm);background:var(--bg3);color:var(--text3);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s">€3</button>
+            <button onclick="openTip(5)" style="flex:1;padding:11px 6px;border:1px solid var(--gold-dim);border-radius:var(--r-sm);background:var(--gold-soft);color:var(--gold);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.15s">€5 ✦</button>
+            <button onclick="openTip(10)" style="flex:1;padding:11px 6px;border:1px solid var(--border2);border-radius:var(--r-sm);background:var(--bg3);color:var(--text3);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s">€10</button>
+            <button onclick="openTip('custom')" style="flex:1;padding:11px 6px;border:1px solid var(--border2);border-radius:var(--r-sm);background:var(--bg3);color:var(--text3);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s">Other</button>
+          </div>
+        </div>
+
+        <!-- Pro status if already unlocked -->
+        <div id="pro-active-card" style="display:none;background:rgba(90,158,104,0.08);border:1px solid rgba(90,158,104,0.2);border-radius:var(--r);padding:14px;margin-bottom:14px">
+          <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:3px">✓ Pro unlocked</div>
+          <div style="font-size:11px;color:var(--text3)">All AI features are active. Thank you for supporting Ćejf.</div>
+        </div>
+
+        <!-- Free features -->
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:14px">
+          <div style="font-family:'Fraunces',serif;font-size:17px;font-weight:500;color:var(--text);margin-bottom:12px">Always free</div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <div style="font-size:12px;color:var(--text3);display:flex;gap:9px"><span style="color:var(--green);flex-shrink:0">✓</span>Full diagnostic engine with origin-linked recommendations</div>
+            <div style="font-size:12px;color:var(--text3);display:flex;gap:9px"><span style="color:var(--green);flex-shrink:0">✓</span>Shot logging, history, statistics</div>
+            <div style="font-size:12px;color:var(--text3);display:flex;gap:9px"><span style="color:var(--green);flex-shrink:0">✓</span>Machine setup, maintenance reminders</div>
+            <div style="font-size:12px;color:var(--text3);display:flex;gap:9px"><span style="color:var(--green);flex-shrink:0">✓</span>Bean profiles, flavour wheel, bag history</div>
+            <div style="font-size:12px;color:var(--text3);display:flex;gap:9px"><span style="color:var(--green);flex-shrink:0">✓</span>Puck diagnostics, pour-over mode</div>
+            <div style="font-size:12px;color:var(--text3);display:flex;gap:9px"><span style="color:var(--green);flex-shrink:0">✓</span>Your data stays on your device — no account, no cloud</div>
+          </div>
+        </div>
+
+        <!-- About -->
+        <div style="padding:14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:14px">
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px">About Ćejf</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.8">Ćejf (pronounced "chayf") is a Bosnian word for the slow, pleasurable enjoyment of something — particularly coffee. Built by a home barista frustrated by apps that only logged shots without explaining why they tasted wrong. Covers espresso and pour-over. Version 4. All feedback welcome.</div>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <a href="https://github.com/bebabena/Ceif" target="_blank" style="font-size:11px;color:var(--gold);text-decoration:none;padding:5px 11px;border:1px solid var(--gold-dim);border-radius:20px">GitHub</a>
+            <a href="https://www.reddit.com/r/espresso" target="_blank" style="font-size:11px;color:var(--text4);text-decoration:none;padding:5px 11px;border:1px solid var(--border2);border-radius:20px">r/espresso</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <!-- ══ LEARN ══ -->
     <div class="view" id="view-learn">
       <div id="learn-topics">
@@ -680,10 +775,17 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
     <button class="nb" onclick="setView('stats')" id="nb-stats"><div class="nb-ico">◈</div><div class="nb-lbl">Stats</div><div class="nb-pip"></div></button>
     <button class="nb" onclick="setView('machine')" id="nb-machine"><div class="nb-ico">⚙</div><div class="nb-lbl">Machine</div><div class="nb-pip"></div></button>
     <button class="nb" onclick="setView('learn')" id="nb-learn"><div class="nb-ico">◉</div><div class="nb-lbl">Learn</div><div class="nb-pip"></div></button>
+    <button class="nb" onclick="setView('support')" id="nb-support"><div class="nb-ico">♡</div><div class="nb-lbl">Support</div><div class="nb-pip"></div></button>
   </nav>
 </div>
 
-<!-- PARAMS SHEET -->
+<!-- EDIT SHOT SHEET -->
+<div class="overlay" id="edit-overlay" onclick="closeEditShot()"></div>
+<div class="sheet" id="edit-sheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-hdr"><div class="sheet-title">Edit Shot</div><button class="sheet-close" onclick="closeEditShot()">×</button></div>
+  <div class="sheet-body" id="edit-body"></div>
+</div>
 <div class="overlay" id="params-overlay" onclick="closeParams()"></div>
 <div class="sheet" id="params-sheet">
   <div class="sheet-handle"></div>
@@ -704,7 +806,8 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
         <button onclick="saveCurrentBag()" style="font-size:11px;color:var(--gold);background:none;border:none;cursor:pointer;font-family:inherit;font-weight:600">+ Save current</button>
       </div>
       <div class="bags-list" id="bags-list"></div>
-      <button onclick="newBag()" style="width:100%;padding:10px;border:1.5px dashed var(--border2);border-radius:var(--r-sm);background:none;color:var(--text4);font-family:inherit;font-size:12px;cursor:pointer;margin-bottom:4px">+ New bag (clear current)</button>
+      <div id="bag-save-feedback" style="display:none;font-size:11px;color:var(--red);padding:4px 0 6px;"></div>
+      <button onclick="newBag()" style="width:100%;padding:10px;border:1.5px dashed var(--border2);border-radius:var(--r-sm);background:none;color:var(--text4);font-family:inherit;font-size:12px;cursor:pointer;margin-bottom:4px">+ New bag</button>
     </div>
     <!-- Scan -->
     <div class="s-sec">
@@ -713,7 +816,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
         <span style="font-size:17px">↑</span> <span id="scan-lbl">Upload label — Claude reads it</span>
       </label>
       <input type="file" id="label-input" accept="image/*" style="position:fixed;top:-200px;left:-200px;width:1px;height:1px;opacity:0" onchange="scanLabel(this)"/>
-      <div class="scan-panel" id="scan-panel">
+      <div class="scan-panel" id="scan-panel" style="display:none">
         <div style="font-size:11px;color:var(--text4);letter-spacing:1px;margin-bottom:7px">SCAN RESULT</div>
         <div id="scan-body"></div>
         <div style="display:flex;gap:7px;margin-top:9px">
@@ -779,7 +882,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 
 <script>
 // ══ STATE ════════════════════════════════════════════════════════════════════
-const P={dose:18,yield:36,time:28,temp:93,grind:90,tamp:'medium',distrib:'good',basket:18,preinf:3,prepause:3,maxp:9};
+const P={dose:18,yield:36,time:28,temp:93,grind:90,tamp:'medium',distrib:'good',basket:18,preinf:3,prepause:3,pressure:9,opvActivated:false};
 const PO={dose:15,water:250,temp:93,grind:225,bloomTime:45,totalTime:210,brewer:'v60',filter:'paper'};
 const M={opv:9};
 const C={name:'',country:'',region:'',variety:'',varieties:[],roast:'medium',process:'washed',daysOld:null,altitude:'',flavorNotes:[],bestGrind:''};
@@ -794,7 +897,7 @@ const RIG={
   maint:{lastDescale:null,lastBackflush:null,lastGasket:null,lastBurrs:null,lastPuckScreen:null},
   reminders:{} // {id: {enabled:bool, intervalDays:number, nextDue:timestamp}}
 };
-let taste=null,puck=null,shots=[],bags=[],brewMode='espresso',histFilter='10';
+let taste=null,puck=null,intensity=3,shots=[],bags=[],brewMode='espresso',histFilter='10';
 let _scanData=null,currentArticle=null;
 
 // Timer state
@@ -852,6 +955,7 @@ function setView(v){
   if(v==='stats')renderStats();
   if(v==='machine')renderMachine();
   if(v==='learn')renderLearn();
+  if(v==='support')renderProState();
 }
 
 // ══ MODE ═════════════════════════════════════════════════════════════════════
@@ -923,8 +1027,8 @@ function updateTimerDisplay(secs){
   const status=document.getElementById('timer-status');
   if(fill)fill.style.width=pct+'%';
   // Colour the fill based on zone
-  if(secs<22){fill.style.background='var(--amber)';status.textContent='Building…';}
-  else if(secs<=35){fill.style.background='var(--green)';status.textContent='✓ Ideal zone';}
+  if(secs<22){fill.style.background='var(--amber)';status.textContent='Pre-extraction…';}
+  else if(secs<=35){fill.style.background='var(--green)';status.textContent='✓ Ideal window';}
   else if(secs<=45){fill.style.background='var(--amber)';status.textContent='Getting long…';}
   else{fill.style.background='var(--red)';status.textContent='Over-extracted risk';}
   // Highlight display border when stopped
@@ -997,24 +1101,40 @@ function updateDialinStrip(){
 
 // ══ BAGS / COFFEE HISTORY ════════════════════════════════════════════════════
 function saveCurrentBag(){
-  if(!C.name&&!C.country){alert('Add a coffee name or origin first.');return;}
+  if(!C.name&&!C.country){
+    const fb=document.getElementById('bag-save-feedback');
+    if(fb){fb.textContent='Add a name or origin first';fb.style.color='var(--red)';fb.style.display='block';setTimeout(()=>fb.style.display='none',2500);}
+    return false;
+  }
+  const bag={...JSON.parse(JSON.stringify(C)),savedAt:Date.now()};
   const existing=bags.findIndex(b=>b.name===C.name&&b.country===C.country);
-  const bag={...JSON.parse(JSON.stringify(C)),savedAt:Date.now(),bestGrind:C.bestGrind||''};
   if(existing>=0)bags[existing]=bag;
   else bags.unshift(bag);
   if(bags.length>8)bags=bags.slice(0,8);
   persist();renderBagsList();
+  return true;
 }
 function newBag(){
-  if(confirm('Save current bag and start fresh?'))saveCurrentBag();
+  if(C.name||C.country)saveCurrentBag();
   Object.assign(C,{name:'',country:'',region:'',variety:'',varieties:[],roast:'medium',process:'washed',daysOld:null,altitude:'',flavorNotes:[],bestGrind:''});
-  syncCoffeeSheetInputs();updateCoffeeCard();persist();
+  syncCoffeeSheetInputs();updateCoffeeCard();renderBagsList();
+  renderCOriginCard();renderCRegionVariety();renderCDensity();updateOriginShortcuts();
+  persist();
+  const nameInp=document.getElementById('c-name');
+  if(nameInp){setTimeout(()=>{nameInp.scrollIntoView({behavior:'smooth',block:'center'});nameInp.focus();},300);}
+  const fb=document.getElementById('bag-save-feedback');
+  if(fb){fb.textContent=C.name||C.country?'✓ Previous bag saved — fill in new bag below':'Fill in details for your new bag below';fb.style.color='var(--green)';fb.style.display='block';setTimeout(()=>fb.style.display='none',3000);}
 }
 function loadBag(idx){
   const b=bags[idx];if(!b)return;
+  if(C.name||C.country){
+    const existing=bags.findIndex(x=>x.name===C.name&&x.country===C.country);
+    if(existing>=0){bags[existing]={...JSON.parse(JSON.stringify(C)),savedAt:Date.now()};persist();}
+  }
   Object.assign(C,JSON.parse(JSON.stringify(b)));
   syncCoffeeSheetInputs();updateCoffeeCard();renderBagsList();
   renderCOriginCard();renderCRegionVariety();renderCDensity();renderFWSelected();updateOriginShortcuts();
+  persist();
 }
 function deleteBag(idx,e){
   e.stopPropagation();
@@ -1120,9 +1240,7 @@ const SL_DEF={
   yield: {lbl:'Yield',    min:20,max:60, step:0.5,unit:'g',  col:'#c9a55a',dec:1,key:'yield'},
   time:  {lbl:'Shot time',min:10,max:60, step:1,  unit:'s',  col:'#d95f45',dec:0,key:'time'},
   temp:  {lbl:'Temp',     min:88,max:98, step:0.5,unit:'°C', col:'#c05020',dec:1,key:'temp'},
-  maxp:  {lbl:'Max pump', min:6, max:15, step:0.5,unit:' bar',col:'#7050a0',dec:1,key:'maxp'},
-  preinf:{lbl:'Pre-infusion flow',min:0,max:5,step:0.5,unit:'s',col:'#5a8fb8',dec:1,key:'preinf'},
-  prepause:{lbl:'Pause after flow',min:0,max:5,step:0.5,unit:'s',col:'#4a7fa8',dec:1,key:'prepause'},
+  pressure:{lbl:'Max pressure observed',min:6,max:15,step:0.5,unit:' bar',col:'#7050a0',dec:1,key:'pressure'},
 };
 function makeSl(key,containerId,cfg){
   const el=document.getElementById(containerId||'sp-'+key);if(!el)return;
@@ -1154,8 +1272,23 @@ function makeSl(key,containerId,cfg){
     const mm=ev=>apply(ev.clientX);const mu=()=>{document.removeEventListener('mousemove',mm);document.removeEventListener('mouseup',mu);};
     document.addEventListener('mousemove',mm);document.addEventListener('mouseup',mu);
   });
-  trk.addEventListener('touchstart',e=>{e.preventDefault();apply(e.touches[0].clientX);},{passive:false});
-  trk.addEventListener('touchmove',e=>{e.preventDefault();apply(e.touches[0].clientX);},{passive:false});
+  // Touch: only intercept horizontal movement — let vertical pass through for scrolling
+  let _trkTouchSX=null,_trkTouchSY=null,_trkActive=false;
+  trk.addEventListener('touchstart',e=>{
+    _trkTouchSX=e.touches[0].clientX;_trkTouchSY=e.touches[0].clientY;_trkActive=false;
+  },{passive:true});
+  trk.addEventListener('touchmove',e=>{
+    if(_trkTouchSX===null)return;
+    const dx=Math.abs(e.touches[0].clientX-_trkTouchSX);
+    const dy=Math.abs(e.touches[0].clientY-_trkTouchSY);
+    if(!_trkActive){
+      if(dy>dx){_trkTouchSX=null;return;} // vertical — let scroll happen
+      if(dx>6){_trkActive=true;} // horizontal — take over
+      else return;
+    }
+    e.preventDefault();apply(e.touches[0].clientX);
+  },{passive:false});
+  trk.addEventListener('touchend',()=>{_trkTouchSX=null;_trkTouchSY=null;_trkActive=false;},{passive:true});
 }
 function stepOPV(d){RIG.opv=Math.max(6,Math.min(15,parseFloat((RIG.opv+d).toFixed(1))));M.opv=RIG.opv;document.querySelectorAll('#opv-disp,#opv-disp-mach').forEach(el=>el&&(el.textContent=RIG.opv.toFixed(1)+' bar'));persist();}
 
@@ -1165,7 +1298,10 @@ function setBasket(v){P.basket=v;document.querySelectorAll('#basket-pills .pill'
 function setPF(v){RIG.portafilter=v;document.getElementById('pf-spouted')?.classList.toggle('on',v==='spouted');document.getElementById('pf-bottomless')?.classList.toggle('on',v==='bottomless');persist();if(taste)renderDiag();}
 function setTamp(v){
   P.tamp=v;
-  ['light','medium','full'].forEach(k=>{const el=document.getElementById('tamp-'+k);if(!el)return;const on=k===v;el.classList.toggle('on',on);});
+  document.querySelectorAll('#tamp-pills .pill').forEach(b=>{
+    const t=b.textContent.trim().toLowerCase();
+    b.classList.toggle('on',t===v||(v==='medium'&&t==='normal'));
+  });
   persist();if(taste)renderDiag();
 }
 function setDistrib(v){
@@ -1205,24 +1341,14 @@ function renderParamsSheetBody(){
     const gs=document.getElementById('po-grinder-sel');if(gs)gs.value=RIG.grinder;
   } else {
     body.innerHTML=buildEspParamsHTML();
-    ['dose','yield','time','temp','maxp'].forEach(k=>makeSl(k,'sp-'+k));
+    ['dose','yield','time','temp'].forEach(k=>makeSl(k,'sp-'+k));
+    makeSl('pressure','sp-pressure');
     rebuildGrindSlider();
-    updatePreinfArea();
-    const om=document.getElementById('sp-machine');if(om)om.value=RIG.machine;
-    const og=document.getElementById('sp-grinder');if(og)og.value=RIG.grinder;
     document.querySelectorAll('#basket-pills .pill').forEach(b=>b.classList.toggle('on',parseInt(b.textContent)===P.basket));
-    const bs=document.getElementById('basket-type-sel');if(bs)bs.value=RIG.basketType;
-    document.getElementById('pf-spouted')?.classList.toggle('on',RIG.portafilter==='spouted');
-    document.getElementById('pf-bottomless')?.classList.toggle('on',RIG.portafilter==='bottomless');
-    setTamp(P.tamp);
-    document.querySelectorAll('#distrib-pills .pill').forEach(b=>{const t=b.textContent.trim().toLowerCase();b.classList.toggle('on',t===P.distrib||(P.distrib==='good'&&t.includes('wdt')));});
   }
-  const opv=document.getElementById('opv-disp');if(opv)opv.textContent=M.opv.toFixed(1)+' bar';
 }
 
 function buildEspParamsHTML(){
-  const m=MACHINES[RIG.machine];
-  const piNote=m&&m.preinf!=='manual'?`<div style="font-size:11px;color:var(--text4);padding:9px 11px;background:var(--bg3);border-radius:var(--r-sm)">${m.note||'Pre-infusion controlled by machine.'}</div>`:'';
   return`
   <div class="s-sec">
     <div class="s-sec-title">Extraction</div>
@@ -1230,35 +1356,49 @@ function buildEspParamsHTML(){
     <div id="sp-temp"></div>
   </div>
   <div class="s-sec">
-    <div class="s-sec-title">Puck prep</div>
-    <div class="plbl">TAMP</div>
-    <div class="seg">
-      <button id="tamp-light" onclick="setTamp('light')"${P.tamp==='light'?' class="on"':''}>Light</button>
-      <button id="tamp-medium" onclick="setTamp('medium')"${P.tamp==='medium'?' class="on"':''}>Normal</button>
-      <button id="tamp-full" onclick="setTamp('full')"${P.tamp==='full'?' class="on"':''}>Hard</button>
+    <div class="s-sec-title">Pressure</div>
+    <div id="sp-pressure"></div>
+    <div class="plbl" style="margin-top:2px">DID OPV ACTIVATE?</div>
+    <div class="pills" id="opv-act-pills" style="margin-bottom:4px">
+      <button class="pill sm${!P.opvActivated?' on':''}" onclick="setOPVActivated(false)">No — stable pressure</button>
+      <button class="pill sm${P.opvActivated?' on':''}" onclick="setOPVActivated(true)">Yes — pressure spiked</button>
     </div>
-    <div class="plbl" style="margin-top:4px">DISTRIBUTION</div>
+    <div style="font-size:11px;color:var(--text4);line-height:1.6;padding:7px 10px;background:var(--bg3);border-radius:var(--r-sm);margin-bottom:4px" id="opv-note">
+      ${P.opvActivated?'⚠ OPV activated = pressure spike = channeling risk + astringency. Grind coarser to reduce puck resistance.':'Stable pressure = even extraction. Good baseline.'}
+    </div>
+    <div style="font-size:11px;color:var(--text4);text-align:right"><button onclick="closePSheet();setView('machine')" style="background:none;border:none;color:var(--gold);font-family:inherit;font-size:11px;font-weight:600;cursor:pointer">OPV set point & pre-infusion → Machine ›</button></div>
+  </div>
+  <div class="s-sec">
+    <div class="s-sec-title">Puck Prep</div>
+    <div class="plbl">TAMP</div>
+    <div class="pills" id="tamp-pills">
+      <button class="pill sm${P.tamp==='light'?' on':''}" onclick="setTamp('light')">Light</button>
+      <button class="pill sm${P.tamp==='medium'?' on':''}" onclick="setTamp('medium')">Normal</button>
+      <button class="pill sm${P.tamp==='full'?' on':''}" onclick="setTamp('full')">Hard</button>
+    </div>
+    <div class="plbl">DISTRIBUTION</div>
     <div class="pills" id="distrib-pills">
       <button class="pill sm${P.distrib==='poor'?' on':''}" onclick="setDistrib('poor')">Poor</button>
       <button class="pill sm${P.distrib==='ok'?' on':''}" onclick="setDistrib('ok')">OK</button>
       <button class="pill sm${P.distrib==='good'?' on':''}" onclick="setDistrib('good')">WDT ✓</button>
     </div>
+    <div class="plbl">BASKET SIZE</div>
+    <div class="pills" id="basket-pills">
+      ${[14,16,18,20,22].map(s=>`<button class="pill sm${P.basket===s?' on':''}" onclick="setBasket(${s})">${s}g</button>`).join('')}
+    </div>
   </div>
-  <div class="s-sec">
-    <div class="s-sec-title" style="display:flex;align-items:center;justify-content:space-between">
-      <span>Machine quick</span>
-      <button onclick="closePSheet();setView('machine')" style="font-size:11px;color:var(--gold);background:none;border:none;cursor:pointer;font-family:inherit;font-weight:600">Full setup ›</button>
-    </div>
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 13px;background:var(--bg3);border-radius:var(--r-sm);margin-bottom:10px">
-      <div style="font-size:12px;color:var(--text3)">OPV</div>
-      <div class="mach-stepper">
-        <button class="mach-step-btn" onclick="stepOPV(-0.5)">−</button>
-        <div class="mach-step-val" id="opv-disp" style="min-width:52px;font-size:16px">${RIG.opv.toFixed(1)} bar</div>
-        <button class="mach-step-btn" onclick="stepOPV(0.5)">+</button>
-      </div>
-    </div>
-    ${m&&m.preinf==='manual'?`<div id="sp-preinf-area"></div>`:`<div id="sp-preinf-area">${piNote}</div>`}
-  </div>`;}
+  <button onclick="closePSheet()" style="width:100%;padding:14px;border:1.5px solid var(--gold-dim);border-radius:var(--r);background:var(--gold-soft);color:var(--gold);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;margin-top:4px">Save & Close</button>
+  `;}
+function setOPVActivated(v){
+  P.opvActivated=v;
+  document.querySelectorAll('#opv-act-pills .pill').forEach(b=>b.classList.remove('on'));
+  const pills=document.querySelectorAll('#opv-act-pills .pill');
+  if(!v&&pills[0])pills[0].classList.add('on');
+  if(v&&pills[1])pills[1].classList.add('on');
+  const note=document.getElementById('opv-note');
+  if(note)note.innerHTML=v?'⚠ OPV activated = pressure spike = channeling risk + astringency. Grind coarser to reduce puck resistance.':'Stable pressure = even extraction. Good baseline.';
+  persist();if(taste)renderDiag();
+}
 function closePSheet(){document.getElementById('params-sheet').classList.remove('open');document.getElementById('params-overlay').classList.remove('open');}
 
 
@@ -1344,8 +1484,15 @@ function makePOSl(containerId,cfg){
     updatePORecipeNote();updateChips();persist();if(taste)renderDiag();
   }
   trk.addEventListener('mousedown',e=>{e.preventDefault();apply(e.clientX);const mm=ev=>apply(ev.clientX);const mu=()=>{document.removeEventListener('mousemove',mm);document.removeEventListener('mouseup',mu);};document.addEventListener('mousemove',mm);document.addEventListener('mouseup',mu);});
-  trk.addEventListener('touchstart',e=>{e.preventDefault();apply(e.touches[0].clientX);},{passive:false});
-  trk.addEventListener('touchmove',e=>{e.preventDefault();apply(e.touches[0].clientX);},{passive:false});
+  let _poTouchSX=null,_poTouchSY=null,_poActive=false;
+  trk.addEventListener('touchstart',e=>{_poTouchSX=e.touches[0].clientX;_poTouchSY=e.touches[0].clientY;_poActive=false;},{passive:true});
+  trk.addEventListener('touchmove',e=>{
+    if(_poTouchSX===null)return;
+    const dx=Math.abs(e.touches[0].clientX-_poTouchSX),dy=Math.abs(e.touches[0].clientY-_poTouchSY);
+    if(!_poActive){if(dy>dx){_poTouchSX=null;return;}if(dx>6)_poActive=true;else return;}
+    e.preventDefault();apply(e.touches[0].clientX);
+  },{passive:false});
+  trk.addEventListener('touchend',()=>{_poTouchSX=null;_poTouchSY=null;_poActive=false;},{passive:true});
 }
 
 // ══ COFFEE SHEET ════════════════════════════════════════════════════════════
@@ -1373,6 +1520,9 @@ function saveC(){
   C.altitude=document.getElementById('c-alt')?.value||'';
   C.region=document.getElementById('c-region')?.value||C.region||'';
   C.bestGrind=document.getElementById('c-best-grind')?.value||'';
+  // Update in bags array if already saved
+  const existing=bags.findIndex(b=>b.name===C.name&&b.country===C.country);
+  if(existing>=0){bags[existing]={...JSON.parse(JSON.stringify(C)),savedAt:Date.now()};}
   persist();updateCoffeeCard();closeCoffeeSheet();
   updateRefBar();updateDialinStrip();
 }
@@ -1470,12 +1620,32 @@ function getBeanDensity(b){
 }
 
 const LEARN=[
-  {id:'extraction',ico:'⚗️',title:'Extraction',sub:'The science of dissolving coffee',body:`<h3>What is extraction?</h3><p>Extraction dissolves soluble compounds from ground coffee into water. Of the roughly 30% of coffee that is soluble, a well-pulled espresso extracts 18–22%. Under 18% = under-extracted (sour, thin). Over 22% = over-extracted (bitter, dry, hollow).</p><h3>The extraction sequence</h3><p>Compounds dissolve in sequence: <b>acids and fruit notes first</b> (very soluble, extract fast), then <b>sugars and sweetness</b>, then <b>bitter and astringent compounds last</b> (extract slowly with heat and pressure). This is why time and grind size so directly shape flavour.</p><h3>The two axes</h3><p><b>Extraction level</b> (horizontal): sour←→bitter. Controlled by grind, time, temp, distribution. <b>Strength</b> (vertical): weak←→strong. Controlled by dose-to-yield ratio. These are independent — you can have bitter-and-weak or sour-and-strong.</p>`,links:['https://www.youtube.com/watch?v=Z-iNAyu-ejo','James Hoffmann — Understanding Espresso Extraction']},
-  {id:'grind',ico:'⚙️',title:'Grind Size',sub:'The single most important variable',body:`<h3>Why grind is primary</h3><p>Grind size controls particle surface area and the resistance water faces passing through the puck. <b>Finer</b> = more surface + more resistance = slower flow = more extraction. <b>Coarser</b> = less resistance = faster flow = less extraction.</p><h3>The J-Max S system</h3><p>R.N.T notation: Rotations (0–4), Numbers (0–8), Ticks (0–9). Each rotation = 90 clicks. Each click = 8.8 microns. Espresso range: 0.6.0–2.5.0. One click changes shot time by roughly 1–2 seconds.</p><h3>When to adjust</h3><p><b>Grind finer when:</b> shot runs fast (&lt;22s), tastes sour or thin, weak despite normal yield. <b>Grind coarser when:</b> shot runs slow (&gt;36s), bitter, astringent, or burnt finish.</p>`,links:['https://www.youtube.com/watch?v=N3ypFklth70','James Hoffmann — The Most Important Thing About Coffee Grinders']},
-  {id:'density',ico:'💎',title:'Bean Density',sub:'How altitude shapes your grind',body:`<h3>Altitude = density</h3><p>Higher altitude means cooler temperatures, which slows cherry ripening. Slower ripening = more time for the seed to accumulate sugars and build dense cell structure. SHB beans (above 1700m) have tightly packed cells that fracture cleanly and extract evenly. Soft beans (below 1200m) are porous and extract much faster.</p><h3>What this means for your grinder</h3><p>SHB beans resist water more — they need a <b>finer grind</b> than soft beans to achieve the same flow rate. They also benefit from <b>higher temperature</b> (93–96°C) to penetrate their tight cell walls. Brazilian naturals (low altitude) extract in seconds and need coarser grind and lower temp.</p><h3>Variety modifies density too</h3><p>Bourbon, SL28, SL34 and Gesha tend to be denser than average for their altitude. Maragogipe and Catimor tend to be less dense. Ćeif accounts for this in its density rating.</p>`,links:['https://www.youtube.com/watch?v=z4n1E9vTmrg','Matt Perger — Bean Density and Grind Size']},
-  {id:'pressure',ico:'🔧',title:'Pressure & OPV',sub:'Why 9 bar became the standard',body:`<h3>Why 9 bar?</h3><p>The 9 bar standard was established empirically in Italy in the 1940s. It produces enough pressure to emulsify oils and form crema without over-pressurising the puck. It's not sacred — many specialty roasters prefer 6–8 bar for lighter roasts which have more resistance.</p><h3>OPV (Over-Pressure Valve)</h3><p>The OPV caps maximum extraction pressure regardless of pump output. Lowering OPV from 9 to 8 bar reduces channeling risk, softens the pressure ramp, and reduces astringency. Most home machines ship with OPV set at 11–15 bar — adjusting to 9 bar is one of the highest-impact modifications.</p><h3>Pre-infusion</h3><p>Pre-infusion wets the puck at low pressure before full pump pressure engages. Grounds swell uniformly, filling micro-gaps before channeling can start. On the Ascaso thermoblock: set BOTH flow duration AND pause — flow alone has almost no effect.</p>`,links:['https://www.youtube.com/watch?v=RpTJp7fqMac','James Hoffmann — Is 9 Bar Right For Espresso?']},
-  {id:'puckprep',ico:'💪',title:'Puck Preparation',sub:'Distribution, tamping and consistency',body:`<h3>Why puck prep matters more than grind precision</h3><p>Water always takes the path of least resistance. Any density variation in the puck becomes a channel — and once a channel forms, it gets flushed with water while surrounding grounds under-extract. A perfectly ground coffee still produces a bad shot with an uneven puck.</p><h3>WDT — Weiss Distribution Technique</h3><p>Use a thin wire tool to gently stir grounds in the portafilter before tamping. This breaks up static clumps from the grinder chute and levels the bed uniformly. WDT is the highest-ROI technique change for most home baristas. It's especially important with hand grinders.</p><h3>Normcore V4 tamper</h3><p>Three springs: light (~10kg), medium (~15kg), hard (~20kg). Always press to full travel — base edge flush with basket rim. The critical variable is not force but <b>levelness</b>. A tilted tamp creates a thick side and thin side, which channels every single shot.</p><h3>Bottomless portafilter as diagnostic tool</h3><p>Removes the spout so you can see the extraction directly. Clean extraction = slow honey drip uniformly across the entire basket. Channeling = fast sprays from isolated points. The most useful piece of equipment for diagnosing distribution problems.</p>`,links:['https://www.youtube.com/watch?v=ApNKMQJmHME','James Hoffmann — WDT Tool Explained','https://www.youtube.com/watch?v=p7s7DWMblY8','Sprometheus — Normcore Tamper Guide']},
-  {id:'origins',ico:'🌍',title:'Coffee Origins',sub:'How geography shapes your cup',body:`<h3>Terroir</h3><p>Like wine, coffee flavour is inseparable from where it's grown. Altitude, soil, rainfall patterns, and temperature variation all shape how a cherry develops its sugars, acids, and aromatic compounds.</p><h3>East Africa</h3><p><b>Ethiopia</b> — birthplace of coffee. Natural process = wine-like blueberry. Washed = floral, jasmine, tea-like. Very dense SHB beans. <b>Kenya</b> — the famous blackcurrant "Kenya tang" from SL28/SL34 varietals. Double-washed. Electric acidity that polarises opinions but is extraordinary when dialled in.</p><h3>Americas</h3><p><b>Colombia</b> — balanced, caramel, red apple, orange. Most forgiving for dialling in. <b>Brazil</b> — chocolate, nuts, low acidity. Natural process. The world's most common espresso base. Extracts quickly.</p><h3>Other origins</h3><p><b>Guatemala</b> — volcanic spice, dark chocolate, cinnamon. <b>Indonesia</b> — earthy, heavy body, tobacco. Wet-hulled process. Very fast extraction. <b>Yemen</b> — the original coffee culture. Wine-like, wild, complex. Traditionally prepared in a džezva.</p>`,links:['https://www.youtube.com/watch?v=VKJLRjSNrH8','James Hoffmann — African Coffees Explained']},
+  {id:'extraction',ico:'⚗️',title:'Extraction Fundamentals',sub:'The chemistry of dissolving coffee',
+   body:`<h3>What is extraction?</h3><p>Extraction dissolves soluble compounds from ground coffee into water. Of the ~30% of coffee that is soluble, a well-pulled espresso dissolves 18–22% (extraction yield, EY). Pour-over targets a slightly wider 18–24%. Under 18% = under-extracted: sour, thin, grassy. Over 22–24% = over-extracted: bitter, dry, hollow.</p><h3>Compounds dissolve in sequence</h3><p><b>First out (very soluble):</b> organic acids — citric, malic, acetic. Responsible for brightness and fruitiness. Dissolve within seconds. <b>Mid-range:</b> sucrose degradation products (sweetness), trigonelline (nutty-sweet notes), body compounds. <b>Last out (slowly soluble):</b> caffeine, chlorogenic acids, quinides, and phenolics — bitterness and astringency. These need time, heat, and pressure.</p><h3>The two independent axes</h3><p><b>Extraction level</b> (sour ← → bitter): controlled by grind size, contact time, temperature, and distribution. <b>Strength / TDS</b> (weak ← → strong): controlled entirely by dose-to-yield ratio. You can be bitter-and-weak or sour-and-strong simultaneously. Fix them independently.</p><h3>Espresso vs pour-over</h3><p>Espresso uses pressure to force water through a dense puck at high speed — contact time is 25–35 seconds but pressure dramatically accelerates extraction. Pour-over uses gravity over 2–4 minutes with no pressure amplification. The longer contact time means temperature and grind size have proportionally larger effects on outcome.</p>`},
+
+  {id:'grind',ico:'⚙️',title:'Grind Size',sub:'The single most impactful variable',
+   body:`<h3>Why grind dominates</h3><p>Grind size simultaneously controls two things: particle surface area (how much coffee is exposed to water) and flow resistance (how long water stays in contact). Finer grind = more surface + more resistance = slower flow = more extraction. These effects compound — a 5% reduction in particle size roughly doubles extraction surface area.</p><h3>Grind for espresso</h3><p>Target: 25–35 second shot at your chosen dose/yield. One click on most hand grinders changes shot time by 1–2 seconds. Adjust in 3–5 click increments. Let the machine equilibrate — the first shot after a grind change often behaves differently from the second. Always adjust grind before yield.</p><h3>Grind for pour-over</h3><p>Target: brewer-specific. V60 at 1:15 = roughly 2:30–3:00. Chemex runs 30–60s longer. AeroPress is highly variable by recipe. Coarser than espresso by a large margin — typically 20–30+ clicks coarser on the same grinder. Grind consistency (uniformity of particle size) matters more in pour-over because there is no pressure to force uneven extraction.</p><h3>Fines and their effect</h3><p>Every grinder produces fine particles (fines) alongside larger particles. Fines extract extremely fast — they contribute body and richness in small quantities but bitterness and astringency in excess. High-quality burrs produce fewer fines. Espresso is more tolerant of fines (short contact time). Pour-over fines can over-extract badly in a 3-minute brew if not well distributed.</p>`},
+
+  {id:'pourover',ico:'☕',title:'Pour-Over Science',sub:'Gravity, turbulence, and contact time',
+   body:`<h3>How pour-over works differently from espresso</h3><p>Pour-over has no pressure to force extraction — it relies entirely on contact time, temperature, and grind to control what dissolves. This gives you more variables to manage but also more ways to fix problems. Brew time is the master diagnostic: too fast = under-extracted, too slow = over-extracted. Everything else is secondary.</p><h3>The bloom</h3><p>CO₂ released from fresh coffee actively repels water, preventing proper extraction. The bloom (pre-infusion) uses 2–3× dose in water (e.g. 30g dose → 60–90ml water) to saturate grounds and let gas escape before main pouring begins. 45–60 seconds is the target. Under-bloomed coffee tastes sour even at the correct brew time, because CO₂ shortened effective contact.</p><h3>Pour technique — why it matters</h3><p>Turbulence from high, aggressive pours suspends fines in the slurry, dramatically extending their contact time and causing bitterness/astringency. A low, slow, steady spiral pour minimises turbulence. A gooseneck kettle is not optional for precision — standard kettles cannot deliver consistent, low-height pours. Keep the spout 3–5cm above the bed.</p><h3>Ratio and strength</h3><p>Pour-over uses higher ratios than espresso: 1:13–1:17 is typical. 1:15 is a standard starting point. Increasing ratio (more water per gram of coffee) reduces strength and can shift the flavour toward clarity and brightness. Decreasing ratio increases body and sweetness but can tip into bitterness if extraction is high.</p><h3>Filter type</h3><p>Paper filters absorb oils and block micro-fines, producing clarity and brightness. Metal filters pass oils and fines, producing body and texture — often described as "heavier" or "more complete". Bleached vs natural paper filters taste identical if properly rinsed. Always pre-rinse paper filters — unrinsed paper adds a cardboard note that masks complexity.</p>`},
+
+  {id:'density',ico:'💎',title:'Bean Density & Altitude',sub:'How growing conditions shape extraction',
+   body:`<h3>Why altitude matters</h3><p>Higher altitude means lower temperatures, which slows cherry ripening. Slow ripening gives the seed more time to accumulate sugars and build dense, tightly-packed cellular structure. SHB (Strictly Hard Bean, above 1700m) beans have a physical hardness — they resist grinding and extraction. Soft beans (below 1200m) are porous and extract rapidly.</p><h3>What density means for your dial-in</h3><p>Dense high-altitude beans: need <b>finer grind</b> to achieve the same flow rate as a soft bean, benefit from <b>higher temperature</b> (93–96°C for espresso, 92–96°C for pour-over) to penetrate tight cell walls, and are more forgiving at the bitter end — they extract slowly, so you have more time between balanced and over-extracted.</p><p>Soft low-altitude beans: extract fast and hit bitterness quickly. Coarser grind, lower temperature (88–92°C). The window between under and over-extracted is narrower. Brazilian naturals are the classic example.</p><h3>Variety modifies density</h3><p>Bourbon, SL28, SL34, and Gesha tend to be denser than average for their altitude. Maragogipe and most Catimor hybrids are less dense. Ćejf accounts for variety when calculating the bean density rating.</p><h3>Chlorogenic acid content</h3><p>High-altitude beans contain significantly more chlorogenic acids (CGAs) — the compounds responsible for brightness, some astringency, and perceived acidity. This is why Kenya SL28 or Ethiopian Yirgacheffe taste more acidic than a Brazilian at the same extraction level. CGAs dissolve mid-extraction — they're not the first thing out (simple organic acids) but arrive before the phenolics.</p>`},
+
+  {id:'compounds',ico:'🧪',title:'Taste Compounds',sub:'What is actually in your cup',
+   body:`<h3>Organic acids — sourness and brightness</h3><p>Citric acid (fruity, found most in Ethiopian and Kenyan), malic acid (apple-like, common in washed Central Americans), acetic acid (vinegar-sharp, increases with fermentation = naturals), phosphoric acid (clean brightness, present in high-altitude East African). These dissolve first and fastest. Sour taste = too high a proportion relative to other compounds.</p><h3>Sucrose and sweetness</h3><p>Green coffee contains significant sucrose which is almost entirely destroyed by roasting — it converts into caramel compounds, CO₂, and water. The caramelisation products (furfurals, furanones) are responsible for the sweet, round notes in well-roasted coffee. Light roasts retain more intact sucrose. Dark roasts burn it all off — sweetness in dark roast comes from other pathways.</p><h3>Caffeine and trigonelline — bitterness</h3><p>Caffeine is stable during roasting and contributes a clean, dry bitterness. Trigonelline degrades during roasting — light roast retains it (nutty-sweet), dark roast destroys it. Both are relatively water-soluble and extract throughout the extraction window. Neither is the primary cause of harsh bitterness.</p><h3>Chlorogenic acids and quinides — astringency</h3><p>Chlorogenic acids (CGAs) are responsible for perceived astringency and a dry, coating mouthfeel. During roasting, CGAs convert to quinides — which are even more bitter and extract at high temperatures or long contact times. This is why dark roast can taste simultaneously bitter and astringent. OPV pressure spikes dramatically increase quinide extraction in espresso.</p><h3>Maillard reaction products — roast character</h3><p>Pyrazines, pyrroles, furans, guaiacols — these compounds develop during roasting and carry the "roasted coffee" aroma. They are largely aromatic (smell more than taste) and extract mid-range. Staling destroys them first — oxidation converts volatile aromatics into flat, unremarkable compounds. This is why stale coffee smells weak before it tastes weak.</p>`},
+
+  {id:'process',ico:'🫘',title:'Processing Methods',sub:'How the cherry becomes the bean',
+   body:`<h3>Why processing changes flavour</h3><p>Coffee cherry fruit surrounds the seed (the bean). How that fruit is removed — and how much fermentation occurs in the process — fundamentally changes the bean's chemical composition before it ever reaches a roaster.</p><h3>Washed (wet process)</h3><p>Fruit removed mechanically, then fermented briefly in water to remove mucilage, then dried. Result: the bean's intrinsic character dominates. Clean, clear, brighter acidity. What you taste is the terroir and variety, not fermentation. Most predictable for dialling in — washed coffees are highly soluble and respond linearly to grind changes.</p><h3>Natural (dry process)</h3><p>Whole cherry dried with fruit intact. Fruit sugars and fermentation compounds absorb into the bean over weeks. Result: wine-like, berry-heavy, higher sweetness, higher organic acid content, heavier body. Less soluble than washed at the same roast level. Over-extracted naturals taste funky-harsh before bitter. Under-extracted naturals taste sour-sweet and unresolved.</p><h3>Honey / pulped natural</h3><p>Fruit skin removed but varying amounts of mucilage (the sticky fruit layer) left on during drying. Yellow honey = least mucilage (closest to washed). Black honey = most (closest to natural). Sweetness and body between washed and natural. More fermentation character with increasing honey level.</p><h3>Anaerobic fermentation</h3><p>Beans fermented in sealed tanks, often at controlled temperatures. Acetic acid and lactic acid production is amplified. Result: intense, often polarising flavour — tropical fruit, fermented sweetness, sometimes wine or spirit notes. Very sensitive to extraction — the fermentation-derived compounds extract harshly if over-done.</p><h3>Wet-hulled (Giling Basah)</h3><p>Indonesian specialty method. Green bean hulled while still moist. Results in very low acidity, heavy earthy body, tobacco and wood notes. The fastest-extracting processing method — these beans need coarse grind and lower temperature to avoid bitterness.</p>`},
+
+  {id:'pressure',ico:'🔧',title:'Pressure & OPV',sub:'Espresso-specific: why 9 bar became the standard',
+   body:`<h3>Why 9 bar?</h3><p>The 9 bar espresso standard was established empirically in Italy in the 1940s. It produces enough pressure to emulsify oils and form stable crema without over-compressing the puck. It's not physically optimal — many specialty roasters use 6–8 bar for lighter roasts which have higher resistance and benefit from a gentler pressure profile.</p><h3>OPV (Over-Pressure Valve)</h3><p>The OPV caps maximum extraction pressure regardless of pump output. Most home machines ship with OPV set at 11–15 bar — dramatically above the intended extraction pressure. Adjusting to 9 bar prevents puck channeling from over-pressurisation and reduces chlorogenic acid/quinide extraction (astringency). This is one of the highest-impact modifications for home espresso machines.</p><h3>Pre-infusion mechanics</h3><p>Pre-infusion wets the puck at low pressure before full pump pressure engages. This allows grounds to swell uniformly, filling micro-gaps before channeling can form. On thermoblock machines (Ascaso Steel Duo): set BOTH flow duration AND the pause that follows — flow alone has almost no effect because pressure never has time to build. The pause is where swelling occurs.</p><h3>Pressure and astringency</h3><p>Pressure dramatically increases the rate of quinide extraction from roasted coffee. A pressure spike (OPV activated) during a shot — caused by puck resistance exceeding OPV setpoint — extracts a disproportionate quantity of astringent compounds in a short window. When you observe OPV activation and taste astringency, the pressure is the direct cause — not insufficient grind coarseness.</p>`},
+
+  {id:'puckprep',ico:'💪',title:'Puck Preparation',sub:'Distribution, tamping, and consistency',
+   body:`<h3>Why puck prep matters more than grind precision</h3><p>Water follows the path of least resistance. Any density variation in the puck — clumps, gaps, tilted tamp — creates a channel. Once a channel forms, it widens as water preferentially flushes through it while the surrounding coffee under-extracts. A perfectly ground coffee still produces a bad shot with poor puck prep.</p><h3>WDT — Weiss Distribution Technique</h3><p>Use a thin wire tool (0.3–0.4mm diameter needles, or a purpose-built WDT tool) to gently stir grounds in the portafilter before tamping. This breaks up static clumps from the grinder chute and distributes density uniformly. WDT has the highest return-on-investment of any technique change for home baristas, especially with hand grinders which tend to clump more than electric ones.</p><h3>Tamping</h3><p>The critical variable is not force but levelness. A tilted tamp creates a thick side and a thin side — the thin side channels on every shot, every time. Spring tampers like the Normcore V4 eliminate force variation but not levelness. Press straight down, elbow above the portafilter, until you feel the spring fully compress. Base edge flush with basket rim.</p><h3>Basket geometry</h3><p>Ridgeless baskets (VST, IMS, stock Ascaso) allow you to see distribution before tamping. Ridged baskets clip the puck in place. Flat-bottom baskets extract more evenly than shallow-angled baskets because water distributes more uniformly across the puck surface before descending.</p>`},
+
+  {id:'origins',ico:'🌍',title:'Coffee Origins',sub:'How geography shapes your cup',
+   body:`<h3>Terroir</h3><p>Like wine, coffee flavour is inseparable from where it grows. Altitude, soil mineral content, rainfall patterns, and temperature range all shape how a cherry develops its sugars, acids, and aromatic precursors. The same variety grown at different altitudes in the same country can taste dramatically different.</p><h3>East Africa</h3><p><b>Ethiopia</b> — birthplace of Arabica. Natural process = wine-like blueberry and strawberry, wild complexity. Washed = floral, jasmine, bergamot, tea-like. Very dense SHB beans grown at 1800–2200m. High chlorogenic acid content = pronounced acidity. <b>Kenya</b> — the famous blackcurrant "Kenya tang" from SL28 and SL34 varietals, double-washed. High phosphoric acid content gives a clean, electric brightness. One of the most polarising and rewarding origins to dial in.</p><h3>Central and South America</h3><p><b>Colombia</b> — balanced, caramel, red apple, mild citrus. Highly forgiving for dialling in. Grown at 1500–2000m. <b>Brazil</b> — chocolate, nuts, low acidity, heavy body. Natural process. The world's most common espresso base. Low altitude (800–1200m) soft beans extract very quickly — coarser grind and lower temperature than East Africa. <b>Guatemala</b> — volcanic soil adds a spice dimension, dark chocolate, cinnamon finish.</p><h3>Asia-Pacific</h3><p><b>Indonesia</b> — earthy, heavy body, tobacco, cedar. Wet-hulled (Giling Basah) process creates very low acidity. Fastest-extracting of the major origins — needs significantly coarser grind. <b>Yemen</b> — the original coffee culture. Wine-like complexity, wild ferment notes, naturally processed. Traditionally prepared as qahwa in a džezva (ibrik). Very dense beans grown at high altitude.</p>`},
 ];
 
 const WD=[
@@ -1721,32 +1891,47 @@ function updateOriginShortcuts(){
   if(!el)return;
   if(!o||!o.flavors||!o.flavors.length){el.innerHTML='';return;}
   const pills=o.flavors.map(f=>{const on=(C.flavorNotes||[]).includes(f);return`<button onclick="fwToggle('${f}')" class="pill sm${on?' on':''}">${f}</button>`;}).join('');
-  el.innerHTML=`<div style="font-size:10px;color:var(--text4);margin-bottom:5px">Typical for ${o.name}:</div><div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px">${pills}</div>`;
+  el.innerHTML=`<div style="font-size:10px;color:var(--text4);margin-bottom:5px">Often associated with ${o.name} coffees — tap to add:</div><div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:6px">${pills}</div>`;
 }
 async function scanLabel(input){
+  if(!requirePro('scan')){if(input)input.value='';return;}
   if(!input.files||!input.files[0])return;
   const file=input.files[0];
   const lbl=document.getElementById('scan-lbl');if(lbl)lbl.textContent='⏳ Reading label…';
   const panel=document.getElementById('scan-panel'),body=document.getElementById('scan-body');
   if(panel)panel.style.display='block';
-  if(body)body.innerHTML='<div style="font-size:12px;color:var(--text4)">AI is reading the label…</div>';
+  if(body)body.innerHTML='<div style="font-size:12px;color:var(--text4)">Resizing and reading…</div>';
   try{
-    const b64=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result.split(',')[1]);r.onerror=rej;r.readAsDataURL(file);});
+    // Resize to max 1024px — large phone photos fail the API
+    const b64=await new Promise((res,rej)=>{
+      const img=new Image(),url=URL.createObjectURL(file);
+      img.onload=()=>{
+        const MAX=1024;let w=img.width,h=img.height;
+        if(w>MAX||h>MAX){const s=MAX/Math.max(w,h);w=Math.round(w*s);h=Math.round(h*s);}
+        const c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0,w,h);
+        URL.revokeObjectURL(url);res(c.toDataURL('image/jpeg',0.85).split(',')[1]);
+      };
+      img.onerror=rej;img.src=url;
+    });
     const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',
       headers:{'Content-Type':'application/json','anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-calls':'true'},
-      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:600,messages:[{role:'user',content:[
-        {type:'image',source:{type:'base64',media_type:file.type||'image/jpeg',data:b64}},
-        {type:'text',text:'Extract from this coffee label. Return ONLY valid JSON, no markdown:\n{"roaster":null,"name":null,"country":"ethiopia|kenya|colombia|brazil|guatemala|costa_rica|indonesia|yemen|other|null","region":null,"variety":null,"altitude":null,"process":"washed|natural|honey|anaerobic|null","roast":"light|medium-light|medium|dark|null","flavors":[],"notes":null}'}
+      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:800,messages:[{role:'user',content:[
+        {type:'image',source:{type:'base64',media_type:'image/jpeg',data:b64}},
+        {type:'text',text:'Read this coffee bag label. Return ONLY valid JSON, no markdown, no explanation:\n{"roaster":null,"name":null,"country":"ethiopia|kenya|colombia|brazil|guatemala|costa_rica|indonesia|yemen|other|null","region":null,"variety":null,"altitude":null,"process":"washed|natural|honey|anaerobic|null","roast":"light|medium-light|medium|dark|null","flavors":[],"notes":null}\nFor flavors: list tasting notes as array. For altitude: number in metres only.'}
       ]}]})});
-    if(!resp.ok)throw new Error('API '+resp.status);
+    if(!resp.ok){const e=await resp.text();throw new Error('API '+resp.status+': '+e.slice(0,80));}
     const data=await resp.json();
     const text=data.content?.find(c=>c.type==='text')?.text||'{}';
     _scanData=JSON.parse(text.replace(/```json|```/g,'').trim());
     if(body){
       const row=(l,v)=>v?`<div class="scan-row"><span class="scan-row-lbl">${l}</span><span class="scan-row-val">${v}</span></div>`:'';
-      body.innerHTML=[row('Roaster',_scanData.roaster),row('Coffee',_scanData.name),row('Country',_scanData.country),row('Region',_scanData.region),row('Variety',_scanData.variety),row('Altitude',_scanData.altitude?_scanData.altitude+'m':null),row('Process',_scanData.process),row('Roast',_scanData.roast),_scanData.flavors?.length?row('Flavours',_scanData.flavors.join(', ')):null].filter(Boolean).join('');
+      body.innerHTML=[row('Roaster',_scanData.roaster),row('Coffee',_scanData.name),row('Country',_scanData.country),row('Region',_scanData.region),row('Variety',_scanData.variety),row('Altitude',_scanData.altitude?_scanData.altitude+'m':null),row('Process',_scanData.process),row('Roast',_scanData.roast),_scanData.flavors?.length?row('Flavours',_scanData.flavors.join(', ')):null,_scanData.notes?row('Notes',_scanData.notes):null].filter(Boolean).join('');
     }
-  }catch(err){if(body)body.innerHTML=`<div style="font-size:12px;color:var(--red)">⚠ Scan failed. Fill in manually below.</div>`;}
+  }catch(err){
+    console.error('Scan:',err);
+    if(body)body.innerHTML=`<div style="font-size:12px;color:var(--red)">⚠ ${err.message||'Scan failed'}. Fill in manually.</div>`;
+  }
   finally{if(lbl)lbl.textContent='Upload label — Claude reads it';if(input)input.value='';}
 }
 function applyScan(){
@@ -1805,6 +1990,8 @@ function buildFlags(){
   if(puck==='dry_cracked')flags.push({ico:'🕸',msg:'Puck cracked = overdosed or over-tamped. Puck swelled into screen. Try −0.5g dose.'});
   if(puck==='stuck_screen')flags.push({ico:'☝',msg:'Puck stuck to screen = overdosed. Reduce dose 1g or use deeper basket.'});
   if(puck==='grounds_rim')flags.push({ico:'💫',msg:'Grounds on rim = overdosed for this basket.'});
+  // Pressure flags
+  if(P.opvActivated)flags.push({ico:'🔴',msg:`OPV activated at ${P.pressure.toFixed(1)} bar — pressure spike = channeling + astringency. Grind coarser before adjusting anything else.`});
   // Params flags
   if(time<20)flags.push({ico:'⚡',msg:`Fast (${time}s) — channeling or grind too coarse`});
   if(time>40)flags.push({ico:'🐢',msg:`Slow (${time}s) — grind too fine or overdosed`});
@@ -1878,93 +2065,151 @@ function getBeanContactProfile(b){
 }
 
 function diagnosePO(t,po,b){
-  const{dose,water,grind,bloomTime,totalTime,brewer}=po;
+  const{dose,water,grind,bloomTime,totalTime,brewer,filter}=po;
   const ratio=water/dose;
   const gLbl=clicks2lbl(grind);
-  const finer=n=>clicks2lbl(Math.max(0,grind-n)),coarser=n=>clicks2lbl(grind+n);
+  const finer=n=>clicks2lbl(Math.max(0,grind-n));
+  const coarser=n=>clicks2lbl(grind+n);
   const bp=getBeanContactProfile(b);
   const density=bp.density;
-  const stale=b.daysOld>35,fresh=b.daysOld<7;
+  const stale=b.daysOld!==null&&b.daysOld>35;
+  const fresh=b.daysOld!==null&&b.daysOld<7;
+  const veryFresh=b.daysOld!==null&&b.daysOld<4;
+  const isPaper=!filter||filter==='paper'||filter==='paper_natural';
+  const isMetal=filter==='metal';
+  // Brew-time zones - adjusted per brewer
+  const brewTimeZones={v60:{fast:150,slow:210},chemex:{fast:180,slow:270},
+    kalita:{fast:150,slow:210},aeropress:{fast:90,slow:180},
+    frenchpress:{fast:210,slow:300},moka:{fast:120,slow:210},other_brewer:{fast:150,slow:240}};
+  const zone=brewTimeZones[brewer]||brewTimeZones.v60;
+  const fast=totalTime<zone.fast,slow=totalTime>zone.slow;
+  const optimalTime=!fast&&!slow;
+  // Grind step scaled to bean density and brewer
+  const baseStep=brewer==='aeropress'?8:brewer==='frenchpress'?5:12;
+  const step=bp.extractionSpeed>0.5?Math.round(baseStep*0.7):bp.extractionSpeed<-0.5?Math.round(baseStep*1.3):baseStep;
+  const grindCtx=(dir,n)=>{
+    const s=dir==='finer'?finer(n):coarser(n);
+    const mod=bp.extractionSpeed>0.5?' (fast-extracting bean — check time before going further)':bp.extractionSpeed<-0.5?' (dense bean — larger adjustment likely needed)':'';
+    return`${gLbl} → ${s}${mod}`;
+  };
+  // Temperature context - pour-over is more temp-sensitive than espresso
+  const tempNote=po.temp;
   const recs=[];
 
-  // Helper: grind context with bean modifier
-  const grindCtx=(dir,clicks)=>{
-    const adj=bp.extractionSpeed>0.5?' (faster-extracting bean — adjust cautiously)':bp.extractionSpeed<-0.5?' (dense bean — larger adjustment needed)':'';
-    return`${gLbl} → ${dir==='finer'?finer(clicks):coarser(clicks)}${adj}`;
-  };
-
   if(t==='sour'){
-    // UNDER-EXTRACTED: contact time too short, fruity acids dominating
-    recs.push({p:1,icon:'⏱',title:'Grind finer — extend contact time',
-      detail:`Sour = water passing through too fast, dissolving only the first-extracted acids before moving on. ${grindCtx('finer',15)}. This increases both surface area and resistance, giving water longer contact with the grounds.`,cat:'grind'});
-    recs.push({p:2,icon:'📏',title:'Reduce yield — increase concentration',
-      detail:`Ratio 1:${ratio.toFixed(1)}. Pulling less water means each ml spends more time in contact. Try 1:${Math.max(12,ratio-1.5).toFixed(0)}. Sweetness increases noticeably.`,cat:'yield'});
-    recs.push({p:3,icon:'💧',title:'Extend bloom time',
-      detail:`${bloomTime}s bloom. Longer bloom (45–60s) fully degasses CO₂, allowing the main pour water to contact grounds evenly rather than being deflected by gas. Reduces sourness from uneven saturation.`,cat:'technique'});
-    if(bp.isLowDensity)recs.push({p:1.5,icon:'💎',title:`${density.label} bean — grinds coarse by nature`,
-      detail:`Porous soft bean extracts very fast. Sour from a low-density bean = grind finer more aggressively (${finer(20)}). The bean's porosity still limits how fast you can go before channeling.`,cat:'bean'});
-    if(bp.isWashed)recs.push({p:3,icon:'🫘',title:'Washed process — extracts cleanly but fast',
-      detail:'Washed coffees are highly soluble. Finer grind has immediate impact. Even a few clicks makes a noticeable difference.',cat:'bean'});
-    if(fresh)recs.push({p:2.5,icon:'🌿',title:`Too fresh (${b.daysOld}d) — CO₂ is blocking extraction`,
-      detail:'Dissolved CO₂ repels water from grounds, shortening effective contact time. Rest 7–14 days. No grind adjustment compensates for very fresh beans.',cat:'bean'});
+    // Under-extraction: organic acids dominate, sugars and body compounds not yet dissolved
+    // Primary cause depends on brew time
+    if(fast){
+      recs.push({p:1,icon:'⏱',title:'Grind finer — brew finished too fast',
+        detail:`${Math.floor(totalTime/60)}:${String(totalTime%60).padStart(2,'0')} is under the target range for ${PO_BREWERS[brewer]?.name||brewer}. ${grindCtx('finer',step)} slows flow rate and increases surface area — both extend contact time.`,cat:'grind'});
+      recs.push({p:2,icon:'💧',title:'Extend bloom — CO₂ is deflecting water',
+        detail:`${bloomTime}s bloom. At least 45s (${Math.round(dose*3)}ml water) lets CO₂ fully escape so main pours contact grounds evenly. Uneven bloom is a common hidden source of sourness even when grind is correct.`,cat:'technique'});
+    } else if(optimalTime){
+      recs.push({p:1,icon:'📏',title:'Reduce water — extraction is under-concentrated',
+        detail:`Brew time is fine at ${Math.floor(totalTime/60)}:${String(totalTime%60).padStart(2,'0')}, so grind is likely correct. Ratio 1:${ratio.toFixed(1)} — reduce to 1:${Math.max(13,ratio-1.5).toFixed(0)} (${Math.round(dose*Math.max(13,ratio-1.5))}ml). Concentration increases immediately.`,cat:'yield'});
+      recs.push({p:2,icon:'⏱',title:'Fine-tune grind slightly',
+        detail:`${grindCtx('finer',Math.round(step*0.5))}. Small adjustment when time is already in range.`,cat:'grind'});
+    } else if(slow){
+      recs.push({p:1,icon:'💧',title:'Check pour technique — slow + sour = uneven saturation',
+        detail:`Slow brew (${Math.floor(totalTime/60)}:${String(totalTime%60).padStart(2,'0')}) with sour taste often means the grind is fine but water channels through dense spots while skipping loose areas. Grind coarser wouldn't help — water is already dwelling too long in places.`,cat:'technique'});
+      recs.push({p:2,icon:'⏱',title:'Grind coarser to even out flow',
+        detail:`${grindCtx('coarser',step)}. Paradoxically, coarser grind here creates more even extraction by eliminating fast channels.`,cat:'grind'});
+    }
+    // Temperature for light roasts - CGA and organic acids need heat to dissolve properly
+    if(tempNote<90&&b.roast==='light')
+      recs.push({p:2.5,icon:'🌡',title:`Temperature ${tempNote}°C too low for light roast`,
+        detail:`Light roasts have intact cell structure and high CGA content. Below 90°C the soluble compounds that balance sourness — sugars, caramel aromatics — don't dissolve efficiently. Try ${Math.min(96,tempNote+3)}°C.`,cat:'temp'});
+    if(veryFresh)recs.push({p:1.5,icon:'🌿',title:`${b.daysOld}d off roast — CO₂ is the main problem`,
+      detail:'Coffee this fresh has so much dissolved CO₂ that water cannot properly contact grounds. Even perfect grind gives sour results. Rest 7–14 days minimum. Bloom aggressively (60–90s) in the meantime.',cat:'bean'});
+    if(bp.isHighDensity&&!fast)recs.push({p:3,icon:'💎',title:`${density?.label} bean — high organic acid content`,
+      detail:`High-altitude beans have more chlorogenic and citric acids. These dissolve first at lower temperatures. If sour with correct brew time, raise temperature to ${Math.min(96,tempNote+2)}°C before adjusting grind.`,cat:'bean'});
+    if(bp.isNatural&&optimalTime)recs.push({p:3,icon:'🫘',title:'Natural process — fruity acids are intentional',
+      detail:'Natural coffees have higher organic acid content from fermentation. Some perceived sourness is characteristic. If intensity is ≤2, this may be the coffee expressing itself correctly rather than a flaw.',cat:'bean'});
+    if(isMetal)recs.push({p:4,icon:'☕',title:'Metal filter passes oils — affects acid perception',
+      detail:'Metal filters allow coffee oils and micro-fines into the cup, which coat the palate and change how acids register. Perceived sourness with metal filter may be concentration — try reducing ratio slightly.',cat:'technique'});
   }
   else if(t==='bitter'){
-    // OVER-EXTRACTED: contact time too long, bitter compounds dissolving
-    recs.push({p:1,icon:'⏱',title:'Grind coarser — reduce contact time',
-      detail:`Bitter = water in contact too long, reaching the slow-dissolving bitter phenolics. ${grindCtx('coarser',15)}. Less surface area + faster flow = fewer bitter compounds dissolved.`,cat:'grind'});
-    recs.push({p:2,icon:'📏',title:'Increase yield — dilute extracted bitters',
-      detail:`Pulling more water (1:${Math.min(18,ratio+1.5).toFixed(0)}) doesn't change what's extracted, but dilutes the concentration of bitter compounds in the cup.`,cat:'yield'});
-    if(bp.isHighDensity)recs.push({p:1.5,icon:'💎',title:`${density.label} bean — resists over-extraction`,
-      detail:`Dense beans extract more slowly — bitter from a high-density bean is less common. Check brew time: if under 2:30, it may be channeling (uneven contact) rather than over-extraction.`,cat:'bean'});
-    if(bp.isLowDensity)recs.push({p:1.5,icon:'💎',title:`${density.label} bean — hits bitterness fast`,
-      detail:`Soft beans extract quickly. ${grindCtx('coarser',20)} and aim for 2:00–2:30 total. These beans need much coarser grind than high-altitude coffees.`,cat:'bean'});
-    if(bp.isNatural)recs.push({p:2.5,icon:'🫘',title:'Natural/anaerobic — ferment compounds amplify bitterness',
-      detail:'Over-extracted naturals taste funky-bitter. Coarser grind is the fix. Distribution must be even — channeling in naturals produces sharp, harsh bitterness.',cat:'bean'});
-    if(stale)recs.push({p:3,icon:'⏰',title:`${b.daysOld}d old — oxidised oils taste bitter`,
-      detail:'Stale beans produce bitter-flat results regardless of grind. Confirm with a fresh bag.',cat:'bean'});
+    // Over-extraction: caffeine, quinides, phenolics dominating
+    // Caffeine extracts at medium contact; quinides and phenolics extract late
+    if(slow){
+      recs.push({p:1,icon:'⏱',title:'Grind coarser — brew running too slow',
+        detail:`${Math.floor(totalTime/60)}:${String(totalTime%60).padStart(2,'0')} is over target. ${grindCtx('coarser',step)}. Water is spending too long in contact, extracting slow-dissolving bitter quinides and phenolics.`,cat:'grind'});
+      recs.push({p:2,icon:'📏',title:'Increase water — dilute bitter concentration',
+        detail:`Ratio 1:${ratio.toFixed(1)} → try 1:${Math.min(18,ratio+1.5).toFixed(0)} (${Math.round(dose*Math.min(18,ratio+1.5))}ml). Pulling more water dilutes bitter compounds without changing what was extracted.`,cat:'yield'});
+    } else if(optimalTime){
+      recs.push({p:1,icon:'🌡',title:'Lower temperature — chemical bitterness at correct time',
+        detail:`Brew time is fine at ${Math.floor(totalTime/60)}:${String(totalTime%60).padStart(2,'0')}, meaning extraction speed is correct but bitterness is a temperature-driven issue. ${tempNote}°C → try ${Math.max(88,tempNote-2)}°C. Higher temperatures accelerate extraction of bitter chlorogenic acids disproportionately.`,cat:'temp'});
+      recs.push({p:2,icon:'⏱',title:'Grind slightly coarser',
+        detail:`${grindCtx('coarser',Math.round(step*0.6))}. Small adjustment when time is already in range.`,cat:'grind'});
+    } else if(fast){
+      recs.push({p:1,icon:'💧',title:'Uneven extraction — fast brew + bitter = channeling',
+        detail:`Fast brew (${Math.floor(totalTime/60)}:${String(totalTime%60).padStart(2,'0')}) with bitterness usually means water channels through dense areas causing localised over-extraction while the rest under-extracts. Check your pour technique and kettle height.`,cat:'technique'});
+    }
+    if(bp.isLowDensity)recs.push({p:1.5,icon:'💎',title:`${density?.label} bean — hits bitterness window fast`,
+      detail:`Porous low-altitude beans extract all compounds including bitter ones in a shorter window. ${grindCtx('coarser',Math.round(step*1.2))} and consider lower temperature (${Math.max(88,tempNote-3)}°C).`,cat:'bean'});
+    if(stale)recs.push({p:2,icon:'⏰',title:`${b.daysOld}d off roast — oxidised oils amplify bitterness`,
+      detail:'Stale beans contain oxidised lipids that taste bitter and flat regardless of grind or temperature. This is the most likely dominant cause. A fresh bag will taste dramatically different.',cat:'bean'});
+    if(b.roast==='dark')recs.push({p:2,icon:'🫘',title:'Dark roast — Maillard compounds are inherently bitter',
+      detail:'Dark roasting creates pyrazines and guaiacols that register as bitter regardless of extraction level. This bitterness is partially intrinsic. Lower temperature (88–91°C) and coarser grind reduce it, but cannot eliminate it entirely.',cat:'bean'});
   }
   else if(t==='weak'){
-    // LOW STRENGTH: extraction may be fine but too dilute, or genuinely under-extracted
-    recs.push({p:1,icon:'📏',title:'Reduce yield — primary strength lever',
-      detail:`Ratio 1:${ratio.toFixed(1)}. Strength and extraction are independent. Pull less water (1:${Math.max(12,ratio-2).toFixed(0)}) to concentrate dissolved solids without changing what's extracted.`,cat:'yield'});
-    recs.push({p:2,icon:'⏱',title:'Grind finer — extract more dissolved solids',
-      detail:`${grindCtx('finer',10)}. More surface area = more dissolved solids in the same brew time = stronger cup.`,cat:'grind'});
-    if(stale)recs.push({p:1.5,icon:'⏰',title:`${b.daysOld}d old — low soluble content`,
-      detail:'Stale beans have fewer soluble compounds remaining. Even perfect grind and ratio gives a flat, weak result. Fresh beans are the real fix.',cat:'bean'});
-    if(fresh)recs.push({p:2.5,icon:'🌿',title:`CO₂ from fresh beans (${b.daysOld}d) blocks extraction`,
-      detail:'CO₂ repels water, reducing effective contact. Bloom longer (60–90s) and rest beans 7+ days.',cat:'bean'});
+    recs.push({p:1,icon:'📏',title:'Reduce water — strength and extraction are independent',
+      detail:`Ratio 1:${ratio.toFixed(1)} → try 1:${Math.max(13,ratio-2).toFixed(0)} (${Math.round(dose*Math.max(13,ratio-2))}ml). Strength (TDS) is set by ratio. Extraction level (EY) is set by grind and time. Fix ratio first before touching grind.`,cat:'yield'});
+    if(optimalTime||fast)recs.push({p:2,icon:'⏱',title:'Grind finer — extract more dissolved solids',
+      detail:`${grindCtx('finer',step)}. More surface area means more soluble compounds dissolve in the same brew time.`,cat:'grind'});
+    if(stale)recs.push({p:1.5,icon:'⏰',title:`${b.daysOld}d off roast — soluble content depleted`,
+      detail:'Oxidation degrades aromatic compounds and makes beans less soluble. A flat, weak cup that doesn\'t respond to ratio changes is almost always stale coffee. Fresh beans are the fix.',cat:'bean'});
+    if(bp.isHighDensity&&tempNote<91)recs.push({p:2.5,icon:'🌡',title:`Dense bean at ${tempNote}°C — heat increases solubility`,
+      detail:`High-altitude beans have tight cell structure. At lower temperatures, heavy caramel and body compounds don't dissolve efficiently. Try ${Math.min(96,tempNote+3)}°C.`,cat:'temp'});
   }
   else if(t==='astringent'){
-    recs.push({p:1,icon:'⏱',title:'Grind coarser — reduce over-extraction',
-      detail:`Harsh/dry finish = phenolic compounds extracted from prolonged contact. ${grindCtx('coarser',10)}. Faster flow reduces total contact time.`,cat:'grind'});
-    recs.push({p:2,icon:'💧',title:'Pouring technique — avoid agitation',
-      detail:'Aggressive pouring agitates fines and extends their contact time. Gentle spiral pours from low height minimise turbulence.',cat:'technique'});
-    if(bp.isNatural)recs.push({p:1.5,icon:'🫘',title:'Natural process — ferment harshness',
-      detail:'Over-extracted naturals taste harsh before bitter. Even distribution is essential — channeling in naturals creates localised over-extraction pockets.',cat:'bean'});
+    // Pour-over astringency: usually over-extraction + phenolics from fines, or aggressive pouring
+    const atCoarseCeiling=grind>=(GRINDERS[RIG.grinder]?.flt?.max||999)-step*2;
+    if(!slow&&!atCoarseCeiling){
+      recs.push({p:1,icon:'⏱',title:'Grind coarser — reduce phenolic extraction',
+        detail:`Dry/harsh finish = chlorogenic acids and tannins extracted through prolonged contact. ${grindCtx('coarser',step)}. Faster flow reduces contact time for these slow-dissolving bitter phenolics.`,cat:'grind'});
+    } else if(atCoarseCeiling){
+      recs.push({p:1,icon:'💧',title:'Grind is at coarse limit — fix pour technique',
+        detail:'Further coarsening risks sour and weak. The astringency source is likely fines migration or aggressive pouring agitating grounds. Use a lower, steadier pour and keep kettle close to the bed surface.',cat:'technique'});
+    }
+    recs.push({p:2,icon:'💧',title:'Pour lower and slower',
+      detail:'High, aggressive pours disturb the coffee bed and suspend fines, which then over-extract in the slurry. Keep the kettle 3–5cm above the bed. A gooseneck kettle makes this much easier.',cat:'technique'});
+    if(isPaper)recs.push({p:2.5,icon:'☕',title:'Pre-rinse filter thoroughly',
+      detail:'An unrinsed paper filter releases papery, slightly astringent compounds. Pour hot water through until it runs clear, discard, then add coffee. This also pre-heats the brewer.',cat:'technique'});
+    if(bp.isNatural)recs.push({p:2,icon:'🫘',title:'Natural/anaerobic — ferment compounds extract harshly',
+      detail:'Natural coffees have fermented fruit compounds that turn harsh under prolonged or uneven extraction. Distribution of grounds before brewing is critical — clumps create local over-extraction pockets.',cat:'bean'});
+    if(slow)recs.push({p:1,icon:'⏱',title:'Slow brew amplifies astringency — grind coarser',
+      detail:`${Math.floor(totalTime/60)}:${String(totalTime%60).padStart(2,'0')} is too long. ${grindCtx('coarser',step)}. Extended brew time extracts phenolics that weren't present at optimal time.`,cat:'grind'});
   }
   else if(t==='flat'){
-    recs.push({p:1,icon:'⏱',title:'Grind finer — more contact time needed',
-      detail:`${grindCtx('finer',10)}. Flat/papery = insufficient extraction of mid-range compounds (sugars, aromatic complexity). More contact time needed.`,cat:'grind'});
-    recs.push({p:2,icon:'💧',title:'Rinse paper filter thoroughly',
-      detail:'Paper filter contributes flat/cardboard taste if not pre-rinsed with hot water. Rinse until water runs clear, discard rinse water.',cat:'technique'});
-    if(stale)recs.push({p:1.5,icon:'⏰',title:`Stale beans (${b.daysOld}d) — most likely cause`,
-      detail:'Flat is the most common sign of stale coffee. Soluble aromatic compounds degrade with oxidation. Fresh beans will taste dramatically different.',cat:'bean'});
+    recs.push({p:1,icon:'⏱',title:'Grind finer — aromatic compounds need more contact',
+      detail:`Flat/muted = under-extracted mid-range compounds (sucrose degradation products, aromatic Maillard volatiles). ${grindCtx('finer',step)}. These compounds need more surface area contact to dissolve.`,cat:'grind'});
+    if(isPaper)recs.push({p:2,icon:'☕',title:'Pre-rinse the filter',
+      detail:'An unrinsed paper filter is the most common cause of a flat, papery cup. It absorbs aromatic oils and adds a cardboard note that smothers complexity. Always rinse and discard before adding coffee.',cat:'technique'});
+    recs.push({p:2.5,icon:'💧',title:'Extend bloom time',
+      detail:`${bloomTime}s bloom may be insufficient. Try 45–60s with ${Math.round(dose*3)}ml. Full CO₂ release allows main pours to saturate grounds evenly, unlocking aromatic compounds trapped by gas.`,cat:'technique'});
+    if(tempNote<90)recs.push({p:2,icon:'🌡',title:`Temperature ${tempNote}°C — too low for aromatic extraction`,
+      detail:`Volatile aromatic compounds require adequate heat to dissolve and volatilise into the cup. Try ${Math.min(96,tempNote+4)}°C. This has more impact on flatness than grind for most medium/light roasts.`,cat:'temp'});
+    if(stale)recs.push({p:1.5,icon:'⏰',title:`${b.daysOld}d off roast — aromatics depleted`,
+      detail:'Volatile aromatic compounds are the first to degrade after roasting. A flat cup that doesn\'t respond to grind or temperature changes is almost always stale coffee.',cat:'bean'});
+    if(isMetal)recs.push({p:3,icon:'☕',title:'Metal filter — check for clogs',
+      detail:'A partially clogged metal filter restricts flow unevenly, causing some areas to over-extract while others under-extract. Rinse or scrub before each brew.',cat:'technique'});
   }
   else if(t==='balanced'){
-    recs.push({p:1,icon:'✨',title:'Dialled in — log this',
-      detail:`${gLbl} · 1:${ratio.toFixed(1)} · ${Math.floor(totalTime/60)}:${String(totalTime%60).padStart(2,'0')} with ${PO_BREWERS[brewer]?.name||brewer}. Note for next bag.`,cat:'info'});
-    if(density)recs.push({p:2,icon:'💎',title:`${density.label} (${density.altitude}m) — parameters confirmed`,
+    recs.push({p:1,icon:'✨',title:'Dialled in — note these parameters',
+      detail:`${gLbl} · 1:${ratio.toFixed(1)} · ${Math.floor(totalTime/60)}:${String(totalTime%60).padStart(2,'0')} · ${po.temp}°C with ${PO_BREWERS[brewer]?.name||brewer}. Save this bag's profile.`,cat:'info'});
+    if(density)recs.push({p:2,icon:'💎',title:`${density.label} (${density.altitude}m) parameters confirmed`,
       detail:density.grind,cat:'bean'});
+    if(bp.processNote)recs.push({p:3,icon:'🫘',title:'Process note',detail:bp.processNote,cat:'bean'});
   }
 
-  // Append origin/variety context
+  // Append origin context
   const o=ORIGINS[b.country];
   if(o&&o.diag&&t!=='balanced')recs.push({p:9,icon:o.flag,title:`${o.name} origin note`,detail:o.diag,cat:'bean'});
-  if(bp.grindNote&&t!=='balanced')recs.push({p:8,icon:'💎',title:'Bean density context',detail:bp.grindNote,cat:'bean'});
+  if(bp.grindNote&&t!=='balanced')recs.push({p:8,icon:'💎',title:'Bean density note',detail:bp.grindNote,cat:'bean'});
   if(bp.processNote&&t!=='balanced')recs.push({p:8.5,icon:'🫘',title:'Process context',detail:bp.processNote,cat:'bean'});
 
   const seen=new Set();
-  return recs.filter(r=>{if(seen.has(r.title))return false;seen.add(r.title);return true;})
   return recs.filter(r=>{if(seen.has(r.title))return false;seen.add(r.title);return true;})
     .sort((a,b)=>a.p-b.p).slice(0,6);
 }
@@ -1984,6 +2229,21 @@ function diagnose(t,p,b,m,prevShot){
   const bp=getBeanContactProfile(b);
   const density=bp.density;
   const stale=b.daysOld>35,fresh=b.daysOld<8;
+
+  // OPV ACTIVATED — highest priority override
+  // Pressure spike = channeling + thermal shock + astringency regardless of taste
+  if(p.opvActivated&&t!=='balanced'){
+    const gLbl=clicks2lbl(grind);
+    const coarser=n=>clicks2lbl(grind+n);
+    return[
+      {p:1,icon:'🔴',title:'OPV activated — grind coarser first',
+        detail:`Pressure spiked to ${p.pressure.toFixed(1)} bar and activated the OPV valve. This causes channeling (uneven water paths) and thermal shock — explaining astringency, sourness, and bitterness simultaneously. Grind coarser (${gLbl} → ${coarser(5)}) to reduce puck resistance. The shot should stay under ${RIG.opv.toFixed(1)} bar without OPV activating.`,cat:'grind'},
+      {p:2,icon:'⏱',title:`Shot time: ${time}s${time>36?' — too slow':time<22?' — too fast':' — in range'}`,
+        detail:time>36?'Long shot + OPV = very high resistance puck. Grind significantly coarser — try 5+ clicks first, then re-evaluate.':time<22?'Fast shot + OPV = extreme channeling. Fix distribution and grind coarser together.':'Time is in range but OPV still activated = borderline resistance. 3–5 clicks coarser should eliminate the spike.',cat:'technique'},
+      {p:3,icon:'🔧',title:`Lower OPV set point (currently ${RIG.opv.toFixed(1)} bar)`,
+        detail:`If OPV continues activating after grind adjustment, lower the OPV set point in Machine settings. For specialty espresso, 8–9 bar is recommended. Your current setting of ${RIG.opv.toFixed(1)} bar may be too high for this grind.`,cat:'pressure'},
+    ];
+  }
 
   // Puck override — if channeling is confirmed, redirect diagnosis immediately
   const puckChanneling=puck==='wet_soggy'||puck==='wet_onesided';
@@ -2154,127 +2414,154 @@ function diagnose(t,p,b,m,prevShot){
 // Always-visible grind/yield direction for espresso
 function getGrindYieldDir(t,p,b){
   const yld=p.yield,dose=p.dose,ratio=yld/dose,time=p.time;
+  // Small steps — diagnostic engine should recommend 3-5 clicks at a time
+  // Use SMALL step for normal adjustments, MEDIUM when clearly needed
+  const bp=getBeanContactProfile(b);
+  const smallStep=3,medStep=5,largeStep=8;
+  const step=bp.extractionSpeed>0.5?smallStep:bp.extractionSpeed<-0.5?medStep:smallStep;
   const finer=n=>clicks2lbl(Math.max(0,p.grind-n));
   const coarser=n=>clicks2lbl(p.grind+n);
   const keep=()=>clicks2lbl(p.grind);
-  const bp=getBeanContactProfile(b);
-  const mod=bp.extractionSpeed>0.5?8:bp.extractionSpeed<-0.5?15:12;
 
-  // Shot time zones
-  const fast=time<22;       // contact too short
-  const optimal=time>=22&&time<=36; // contact in range
-  const slow=time>36;       // contact too long
+  const fast=time<22,optimal=time>=22&&time<=36,slow=time>36;
+  const loRatio=ratio<1.9,okRatio=ratio>=1.9&&ratio<=2.5,hiRatio=ratio>2.5;
+  const opvSpike=p.opvActivated;
 
-  // Ratio zones
-  const loRatio=ratio<1.9;
-  const okRatio=ratio>=1.9&&ratio<=2.5;
-  const hiRatio=ratio>2.5;
+  // OPV ACTIVATED — always grind coarser first regardless of taste
+  // High pressure = channeling source, must reduce puck resistance
+  if(opvSpike&&t!=='balanced'){
+    return{
+      grind:{dir:'↑ Coarser',val:coarser(medStep),color:'#d95f45',
+        why:`OPV activated = pressure spike = channeling. Grind ${medStep} clicks coarser to reduce puck resistance. Fix the spike before adjusting yield.`},
+      yield:{dir:'✓ Keep',val:yld+'g',color:'#8a7040',
+        why:`Don't change yield yet. First eliminate the pressure spike with a coarser grind, then re-evaluate taste.`},
+    };
+  }
 
   if(t==='sour'){
     if(fast){
-      // Fast shot = genuine short contact. Grind finer. Accept slower time as a result.
       return{
-        grind:{dir:'↓ Finer',val:finer(mod),color:'#50a060',
-          why:`Shot ran ${time}s — water passed through too fast. Finer grind slows flow, increasing contact time. Expect +5–10s on next shot.`},
-        yield:{dir:'✓ Keep or ↑',val:`${yld}g–${(dose*2.3).toFixed(0)}g`,color:'#50a060',
-          why:'Fix grind first. If still sour after grind adjustment, extend yield to pick up sweeter mid-extraction compounds.'},
+        grind:{dir:'↓ Finer',val:finer(step),color:'#50a060',
+          why:`Shot ran ${time}s — short contact. Grind ${step} clicks finer. Small step: re-evaluate before adjusting more.`},
+        yield:{dir:'✓ Keep or ↑',val:`${yld}–${(dose*2.3).toFixed(0)}g`,color:'#50a060',
+          why:'Fix grind first. If still sour after re-test, then extend yield.'},
       };
     }
     if(optimal&&loRatio){
-      // Shot time is fine, ratio is low — yield is the lever, not grind
       return{
         grind:{dir:'✓ Keep',val:keep(),color:'#8a7040',
-          why:`Shot time ${time}s is in the ideal window. Grinding finer would push it slower — don't change grind yet.`},
-        yield:{dir:'↑ More',val:`${(dose*2.2).toFixed(0)}–${(dose*2.5).toFixed(0)}g`,color:'#50a060',
-          why:`Ratio 1:${ratio.toFixed(1)} is short. Pull more to collect the sweeter compounds that extract mid-shot. This is the correct fix when time is already optimal.`},
+          why:`Shot time ${time}s is ideal. Don't change grind — grinding finer would push it slower.`},
+        yield:{dir:'↑ Extend',val:`${(dose*2.2).toFixed(0)}–${(dose*2.5).toFixed(0)}g`,color:'#50a060',
+          why:`Ratio 1:${ratio.toFixed(1)} is short. Pull more to collect sweeter mid-shot compounds.`},
       };
     }
     if(optimal&&okRatio){
-      // Time and ratio both fine — origin/density/process is the likely cause
       return{
-        grind:{dir:'↓ Slightly finer',val:finer(Math.round(mod*0.6)),color:'#8a7040',
-          why:`Shot time ${time}s and ratio 1:${ratio.toFixed(1)} are both in range. Small grind adjustment (${Math.round(mod*0.6)} clicks) may be enough.`},
-        yield:{dir:'↑ Try more',val:`${(dose*Math.min(2.6,ratio+0.2)).toFixed(0)}g`,color:'#8a7040',
-          why:'If grind adjustment changes shot time significantly, use yield instead to extend without affecting contact rate.'},
+        grind:{dir:'↓ Slightly finer',val:finer(smallStep),color:'#8a7040',
+          why:`Time and ratio both good. Try ${smallStep} clicks finer — small step, then re-test.`},
+        yield:{dir:'↑ Try more',val:`${(dose*Math.min(2.6,ratio+0.15)).toFixed(0)}g`,color:'#8a7040',
+          why:'Secondary to grind. Use if grind adjustment shifts shot time too much.'},
       };
     }
     if(slow){
-      // Slow shot but still sour — likely channeling, not under-extraction
       return{
         grind:{dir:'⚠ Don\'t adjust',val:keep(),color:'#c08030',
-          why:`Shot ran ${time}s — this is slow. Sourness + slow shot = channeling (fast water path bypasses grounds). Grinding finer makes this worse.`},
+          why:`Slow shot (${time}s) + sour = channeling, not under-extraction. Fix distribution/tamp first.`},
         yield:{dir:'✓ Keep',val:yld+'g',color:'#c08030',
-          why:'Fix distribution and tamp first. Yield and grind are not the issue when shot is slow and sour.'},
+          why:'Yield and grind are not the issue when shot is slow and sour.'},
       };
     }
   }
 
   if(t==='bitter'){
     if(slow){
-      // Long contact = genuine over-extraction. Grind coarser. Accept faster time.
       return{
-        grind:{dir:'↑ Coarser',val:coarser(mod),color:'#e05540',
-          why:`Shot ran ${time}s — extended contact extracted bitter compounds. Coarser grind speeds flow. Expect −5–10s on next shot.`},
+        grind:{dir:'↑ Coarser',val:coarser(step),color:'#e05540',
+          why:`Shot ran ${time}s — over-extracting. Grind ${step} clicks coarser. Re-test before adjusting more.`},
         yield:{dir:'↓ Less',val:`${(dose*Math.max(1.8,ratio-0.2)).toFixed(0)}g`,color:'#e05540',
-          why:'Pulling shorter concentrates the extraction before bitter compounds fully develop. Secondary to grind fix.'},
+          why:'Pulling shorter avoids the bitter tail. Secondary to grind fix.'},
       };
     }
     if(optimal&&hiRatio){
-      // Time is fine but yield is high — pulling too far into the bitter tail
       return{
         grind:{dir:'✓ Keep',val:keep(),color:'#8a7040',
-          why:`Shot time ${time}s is fine. Grinding coarser would speed up an already-optimal shot — don't change grind.`},
+          why:`Shot time ${time}s is fine. Don't change grind.`},
         yield:{dir:'↓ Less',val:`${(dose*Math.max(1.9,ratio-0.3)).toFixed(0)}g`,color:'#e05540',
-          why:`Ratio 1:${ratio.toFixed(1)} is pulling into the bitter tail of extraction. Stop earlier — the last ~${(yld-dose*Math.max(1.9,ratio-0.3)).toFixed(0)}g of yield is where bitterness concentrates.`},
+          why:`Ratio 1:${ratio.toFixed(1)} is pulling into the bitter tail. Stop earlier.`},
       };
     }
     if(optimal&&okRatio){
       return{
-        grind:{dir:'↑ Slightly coarser',val:coarser(Math.round(mod*0.5)),color:'#c08030',
-          why:`Shot time ${time}s is in range. Small coarser adjustment shifts extraction away from bitter compounds.`},
-        yield:{dir:'↓ Try less',val:`${(dose*Math.max(1.9,ratio-0.15)).toFixed(0)}g`,color:'#c08030',
-          why:'Stopping a few grams earlier avoids the most bitter end of the extraction curve.'},
+        grind:{dir:'↑ Slightly coarser',val:coarser(smallStep),color:'#c08030',
+          why:`${smallStep} clicks coarser — small step, re-test before adjusting more.`},
+        yield:{dir:'↓ Try less',val:`${(dose*Math.max(1.9,ratio-0.1)).toFixed(0)}g`,color:'#c08030',
+          why:'Stopping a few grams earlier avoids the most bitter end.'},
       };
     }
     if(fast){
-      // Fast + bitter = usually channeling, not grind issue
       return{
         grind:{dir:'⚠ Check first',val:keep(),color:'#c08030',
-          why:`Fast shot (${time}s) + bitter = likely channeling. A fast channel extracts locally very high TDS from one spot. Fix distribution before adjusting grind.`},
+          why:`Fast shot (${time}s) + bitter = likely channeling. Fix distribution before adjusting grind.`},
         yield:{dir:'↓ Less',val:`${(dose*Math.max(1.8,ratio-0.2)).toFixed(0)}g`,color:'#e05540',
           why:'If channeling is ruled out, pulling shorter reduces the bitter tail.'},
       };
     }
   }
 
-  if(t==='weak'){
-    // Weak = strength issue, independent of extraction quality
-    // Yield is always the first lever
+  if(t==='astringent'){
+    // Astringent = phenolic over-extraction. Coarser grind helps ONLY if shot time allows it.
+    // Ceiling: if already fast (<25s), grind coarser will make it faster = channeling = MORE astringent.
+    // If already at coarse end of zone (long shot time), the issue is OPV/pressure, not grind.
+    const g=GRINDERS[RIG.grinder],zone=g?.esp;
+    const atCoarseCeiling=zone&&p.grind>=(zone.max-medStep*2);
+    const atFastCeiling=fast; // shot already <22s, coarser = channeling risk
+
+    if(atFastCeiling){
+      return{
+        grind:{dir:'⚠ Don\'t go coarser',val:keep(),color:'#c08030',
+          why:`Shot ran ${time}s — already fast. Grinding coarser would increase channeling, making astringency worse. Fix distribution and OPV first.`},
+        yield:{dir:'↑ More',val:`${(dose*Math.min(2.7,ratio+0.2)).toFixed(0)}g`,color:'#607040',
+          why:'Pulling more water dilutes phenolic concentration without worsening channeling.'},
+      };
+    }
+    if(atCoarseCeiling){
+      return{
+        grind:{dir:'✓ At coarse limit',val:keep(),color:'#8a7040',
+          why:`Grind is near the coarse ceiling for espresso. Further coarsening risks sour + weak. The astringency source is likely pressure or distribution, not contact time.`},
+        yield:{dir:'↑ More',val:`${(dose*Math.min(2.7,ratio+0.2)).toFixed(0)}g`,color:'#607040',
+          why:'More yield dilutes tannin concentration. Main lever now that grind is at its limit.'},
+      };
+    }
+    if(slow){
+      return{
+        grind:{dir:'↑ Coarser',val:coarser(opvSpike?medStep:step),color:'#607040',
+          why:opvSpike?`OPV activated + astringent + slow shot = very high resistance puck extracting phenolics. Grind ${medStep} clicks coarser to reduce resistance.`:`Shot ${time}s is slow — high contact time extracting phenolics. ${step} clicks coarser.`},
+        yield:{dir:'↑ More',val:`${(dose*Math.min(2.7,ratio+0.2)).toFixed(0)}g`,color:'#607040',
+          why:'More water dilutes tannin concentration. Secondary to grind.'},
+      };
+    }
+    // Optimal time but still astringent = pressure source, not grind
     return{
-      grind:{dir:loRatio||okRatio?'✓ Keep':'↓ Finer',
-        val:loRatio||okRatio?keep():finer(10),
-        color:'#5090c0',
-        why:loRatio||okRatio
-          ?`Shot time ${time}s is ${optimal?'optimal':'acceptable'}. Don't change grind until yield is adjusted first.`
-          :`At ratio 1:${ratio.toFixed(1)}, grind finer to extract more dissolved solids per gram.`},
-      yield:{dir:'↓ Less',val:`${(dose*Math.min(ratio-0.3,2.2)).toFixed(0)}g`,color:'#5090c0',
-        why:`Strength and extraction are independent. Ratio 1:${ratio.toFixed(1)} is ${hiRatio?'high — pulling too much water':'the first thing to reduce'}. Target 1:2.0–2.2.`},
+      grind:{dir:'✓ Keep',val:keep(),color:'#8a7040',
+        why:`Shot time ${time}s is in range. Grind is not the primary cause. Focus on OPV, pre-infusion, and distribution instead.`},
+      yield:{dir:'↑ More',val:`${(dose*Math.min(2.7,ratio+0.2)).toFixed(0)}g`,color:'#607040',
+        why:'More water dilutes phenolic concentration. Set OPV to 8–9 bar if still astringent.'},
     };
   }
 
-  if(t==='astringent'){
+  if(t==='weak'){
     return{
-      grind:{dir:'↑ Coarser',val:coarser(8),color:'#607040',
-        why:`Coarser grind reduces total contact time, lowering phenolic compound extraction.${slow?` Shot ran ${time}s — long contact is amplifying harshness.`:''}`},
-      yield:{dir:'↑ More',val:`${(dose*Math.min(2.7,ratio+0.2)).toFixed(0)}g`,color:'#607040',
-        why:'More water dilutes tannin concentration. Secondary to OPV adjustment.'},
+      grind:{dir:hiRatio?'↓ Finer':'✓ Keep',val:hiRatio?finer(smallStep):keep(),color:'#5090c0',
+        why:hiRatio?`Ratio is high — finer grind extracts more solids per gram.`:`Shot time ${time}s is ${optimal?'optimal':'acceptable'}. Don't change grind until yield is adjusted.`},
+      yield:{dir:'↓ Less',val:`${(dose*Math.min(ratio-0.3,2.2)).toFixed(0)}g`,color:'#5090c0',
+        why:`Strength is independent of extraction. Ratio 1:${ratio.toFixed(1)} — reduce water first.`},
     };
   }
 
   if(t==='burnt'){
     return{
-      grind:{dir:'↑ Coarser',val:coarser(10),color:'#904020',
-        why:'Faster initial flow reduces the time hot water scorches dry grounds at the start of the shot.'},
+      grind:{dir:'↑ Coarser',val:coarser(step),color:'#904020',
+        why:`Faster initial flow reduces scorching. ${step} clicks coarser — re-test.`},
       yield:{dir:'↑ More',val:`${(dose*Math.min(2.8,ratio+0.3)).toFixed(0)}g`,color:'#904020',
         why:'More water dilutes concentrated scorched compounds.'},
     };
@@ -2282,15 +2569,13 @@ function getGrindYieldDir(t,p,b){
 
   if(t==='balanced'){
     return{
-      grind:{dir:'✓ Keep',val:keep(),color:'#50a060',why:`${time}s shot time is working. Don't change grind.`},
-      yield:{dir:'✓ Keep',val:yld+'g',color:'#50a060',why:`1:${ratio.toFixed(1)} ratio is in the right zone.`},
+      grind:{dir:'✓ Keep',val:keep(),color:'#50a060',why:`${time}s — working well. Save this grind.`},
+      yield:{dir:'✓ Keep',val:yld+'g',color:'#50a060',why:`1:${ratio.toFixed(1)} — in the right zone.`},
     };
   }
-
   return null;
 }
 
-// Pour over: shot time is total brew time, ratio is water:coffee
 function getPOGrindYieldDir(t,po,b){
   const ratio=po.water/po.dose;
   const time=po.totalTime;
@@ -2534,7 +2819,7 @@ const WATER_HARDNESS={
 const WATER_FILTERS={none:'No filter',bwt:'BWT Penguin',brita:'Brita',third_wave:'Third Wave Water',ro:'Reverse Osmosis',other_filter:'Other'};
 // ══ NOTIFICATIONS & REMINDERS ════════════════════════════════════════════════
 const SW_SCOPE='/';
-const SW_URL='ceif-sw.js'; // deployed alongside on GitHub Pages
+const SW_URL='cejf-sw.js'; // deployed alongside on GitHub Pages
 
 async function requestNotifPermission(){
   if(!('Notification' in window))return'unsupported';
@@ -2547,7 +2832,7 @@ async function requestNotifPermission(){
 async function registerSW(){
   if(!('serviceWorker' in navigator))return null;
   try{
-    const reg=await navigator.serviceWorker.ready;
+    const reg=await navigator.serviceWorker.register(SW_URL,{scope:SW_SCOPE});
     return reg;
   }catch(e){return null;}
 }
@@ -2613,10 +2898,10 @@ function showMaintBanner(items){
 
 // Write Service Worker file inline — only useful on HTTPS/GitHub Pages
 function generateSW(){
-  return`// Ćeif Service Worker — handles scheduled maintenance reminders
-// Deployed at ceif-sw.js alongside index.html on GitHub Pages
+  return`// Ćejf Service Worker — handles scheduled maintenance reminders
+// Deployed at cejf-sw.js alongside index.html on GitHub Pages
 
-const CACHE='ceif-v1';
+const CACHE='cejf-v1';
 let scheduledReminders=[];
 
 self.addEventListener('install',e=>self.skipWaiting());
@@ -2638,7 +2923,7 @@ function scheduleNext(){
 }
 
 function fireNotification(r){
-  self.registration.showNotification('Ćeif — Maintenance due',{
+  self.registration.showNotification('Ćejf — Maintenance due',{
     body:r.name+' is due. Tap to open the app.',
     icon:'/icon-192.png',
     badge:'/icon-192.png',
@@ -2722,14 +3007,8 @@ function renderMachine(){
   const notifGranted=notifSupported&&window.Notification?.permission==='granted';
   const onHTTPS=isHTTPS();
 
-  const notifBanner=!notifGranted?`
-    <div style="padding:10px 13px;background:${onHTTPS?'rgba(201,165,90,0.07)':'rgba(90,143,184,0.07)'};border:1px solid ${onHTTPS?'var(--gold-dim)':'rgba(90,143,184,0.3)'};border-radius:var(--r-sm);margin-bottom:12px;font-size:12px;color:var(--text3);line-height:1.7">
-      ${onHTTPS
-        ?`🔔 <b style="color:var(--gold)">Enable notifications</b> to receive reminders even when the app is closed. <button onclick="requestNotifPermission().then(p=>{if(p==='granted')registerSW().then(sendSWReminders);renderMachine();}" style="margin-left:6px;padding:4px 12px;border:1px solid var(--gold-dim);border-radius:20px;background:none;color:var(--gold);font-family:inherit;font-size:11px;font-weight:700;cursor:pointer">Allow →</button>`
-        :`📱 <b style="color:var(--blue)">Deploy to GitHub Pages</b> to enable background push notifications. Reminders will show as in-app banners until then.`
-      }
-    </div>`:
-    `<div style="padding:8px 13px;background:rgba(90,158,104,0.08);border:1px solid rgba(90,158,104,0.2);border-radius:var(--r-sm);margin-bottom:12px;font-size:12px;color:var(--green)">✓ Notifications enabled — reminders will fire even when app is closed.</div>`;
+  const httpsMsg='<div style="padding:10px 13px;background:'+(onHTTPS?'rgba(201,165,90,0.07)':'rgba(90,143,184,0.07)')+';border:1px solid '+(onHTTPS?'var(--gold-dim)':'rgba(90,143,184,0.3)')+';border-radius:var(--r-sm);margin-bottom:12px;font-size:12px;color:var(--text3);line-height:1.7">'+(onHTTPS?'🔔 <b style="color:var(--gold)">Enable notifications</b> to receive reminders even when the app is closed. <button onclick="requestNotifPermission().then(p=>{if(p===\'granted\')registerSW().then(sendSWReminders);renderMachine();}" style="margin-left:6px;padding:4px 12px;border:1px solid var(--gold-dim);border-radius:20px;background:none;color:var(--gold);font-family:inherit;font-size:11px;font-weight:700;cursor:pointer">Allow →</button>':'📱 <b style="color:var(--blue)">Deploy to GitHub Pages</b> to enable background push notifications. Reminders will show as in-app banners until then.')+'</div>';
+  const notifBanner=!notifGranted?httpsMsg:'<div style="padding:8px 13px;background:rgba(90,158,104,0.08);border:1px solid rgba(90,158,104,0.2);border-radius:var(--r-sm);margin-bottom:12px;font-size:12px;color:var(--green)">✓ Notifications enabled — reminders will fire even when app is closed.</div>';
 
   const maintHTML=MAINT_ITEMS.map(item=>{
     const days=daysSince(RIG.maint[item.id]);
@@ -2920,9 +3199,49 @@ function renderTasteGrid(){
   grid.innerHTML=tastes.map(t=>`<button class="tb${taste===t.id?' on':''}" onclick="selectTaste('${t.id}')" style="${taste===t.id?'border-color:'+t.color+';':''}">`+
     `<div class="tb-ico">${t.emoji}</div><div class="tb-lbl"${taste===t.id?` style="color:${t.color}"`:''}>${t.lbl}</div></button>`).join('');
 }
+function setIntensity(n){
+  intensity=Math.max(1,Math.min(5,Math.round(n)));
+  const labels={1:'Subtle (1)',2:'Mild (2)',3:'Moderate (3)',4:'Strong (4)',5:'Intense (5)'};
+  const lbl=document.getElementById('intensity-lbl');
+  if(lbl)lbl.textContent=labels[intensity];
+  const pct=((intensity-1)/4)*100;
+  const fill=document.getElementById('intensity-fill');
+  const thumb=document.getElementById('intensity-thumb');
+  if(fill)fill.style.width=pct+'%';
+  if(thumb)thumb.style.left=pct+'%';
+}
+function initIntensitySlider(){
+  const trk=document.getElementById('intensity-trk');if(!trk)return;
+  function applyX(cx){
+    const r=trk.getBoundingClientRect();
+    const frac=Math.max(0,Math.min(1,(cx-r.left)/r.width));
+    setIntensity(Math.round(frac*4)+1);
+  }
+  trk.addEventListener('mousedown',e=>{e.preventDefault();applyX(e.clientX);
+    const mm=ev=>applyX(ev.clientX);
+    const mu=()=>{document.removeEventListener('mousemove',mm);document.removeEventListener('mouseup',mu);};
+    document.addEventListener('mousemove',mm);document.addEventListener('mouseup',mu);
+  });
+  let _iSX=null,_iSY=null,_iActive=false;
+  trk.addEventListener('touchstart',e=>{_iSX=e.touches[0].clientX;_iSY=e.touches[0].clientY;_iActive=false;},{passive:true});
+  trk.addEventListener('touchmove',e=>{
+    if(_iSX===null)return;
+    const dx=Math.abs(e.touches[0].clientX-_iSX),dy=Math.abs(e.touches[0].clientY-_iSY);
+    if(!_iActive){if(dy>dx){_iSX=null;return;}if(dx>6)_iActive=true;else return;}
+    e.preventDefault();applyX(e.touches[0].clientX);
+  },{passive:false});
+  trk.addEventListener('touchend',()=>{_iSX=null;_iSY=null;_iActive=false;},{passive:true});
+}
 function selectTaste(id){
   taste=id;renderTasteGrid();renderDiag();
   renderPuckPicker();
+  // Show intensity row and init slider
+  const irow=document.getElementById('intensity-row');
+  if(irow&&irow.style.display==='none'){
+    irow.style.display='block';
+    initIntensitySlider();
+  }
+  setIntensity(intensity);
   document.getElementById('log-btn').className='log-btn ready';
   showTDSInput();persist();
 }
@@ -2980,19 +3299,107 @@ function toggleRec(i){
 }
 
 // ══ LOG ══════════════════════════════════════════════════════════════════════
+// ══ EDIT LOGGED SHOTS ════════════════════════════════════════════════════════
+function openEditShot(id){
+  const s=shots.find(x=>x.id===id);if(!s)return;
+  const tastes=s.brewMode==='pourover'?TASTES_PO:TASTES_ESP;
+  const body=document.getElementById('edit-body');if(!body)return;
+  body.innerHTML=`
+    <div class="s-sec">
+      <div class="s-sec-title">Taste</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:4px">
+        ${tastes.map(t=>`<button onclick="editSetTaste(${id},'${t.id}',this)" style="padding:10px 4px;border:1.5px solid ${s.taste===t.id?t.color:'var(--border)'};border-radius:var(--r);background:${s.taste===t.id?'var(--gold-soft)':'var(--bg2)'};cursor:pointer;font-family:inherit;font-size:11px;font-weight:600;color:${s.taste===t.id?t.color:'var(--text3)'}" data-taste="${t.id}">${t.emoji} ${t.lbl}</button>`).join('')}
+      </div>
+    </div>
+    <div class="s-sec">
+      <div class="s-sec-title">Parameters</div>
+      <div style="display:flex;flex-direction:column;gap:9px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="plbl" style="min-width:60px;margin:0">Grind</div>
+          <input id="edit-grind" value="${s.grind}" type="number" step="1" style="flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);padding:8px 11px;color:var(--text);font-family:inherit;font-size:14px;font-weight:600;outline:none"/>
+          <span style="font-size:11px;color:var(--text4)" id="edit-grind-lbl">${clicks2lbl(parseFloat(s.grind))}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="plbl" style="min-width:60px;margin:0">Dose</div>
+          <input id="edit-dose" value="${s.dose}" type="number" step="0.1" style="flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);padding:8px 11px;color:var(--text);font-family:inherit;font-size:14px;font-weight:600;outline:none"/>
+          <span style="font-size:11px;color:var(--text4)">g</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="plbl" style="min-width:60px;margin:0">${s.brewMode==='pourover'?'Water':'Yield'}</div>
+          <input id="edit-yield" value="${s.brewMode==='pourover'?s.water:s.yield}" type="number" step="0.5" style="flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);padding:8px 11px;color:var(--text);font-family:inherit;font-size:14px;font-weight:600;outline:none"/>
+          <span style="font-size:11px;color:var(--text4)">${s.brewMode==='pourover'?'ml':'g'}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="plbl" style="min-width:60px;margin:0">Time</div>
+          <input id="edit-time" value="${s.time||s.totalTime}" type="number" step="1" style="flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);padding:8px 11px;color:var(--text);font-family:inherit;font-size:14px;font-weight:600;outline:none"/>
+          <span style="font-size:11px;color:var(--text4)">s</span>
+        </div>
+      </div>
+    </div>
+    <div class="s-sec">
+      <div class="s-sec-title">Notes</div>
+      <textarea style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px 12px;color:var(--text2);font-family:inherit;font-size:13px;resize:none;height:64px;outline:none" id="edit-notes">${s.notes||''}</textarea>
+    </div>
+    <button onclick="saveEditShot(${id})" style="width:100%;padding:14px;border:none;border-radius:var(--r);background:var(--gold);color:#0a0907;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">Save Changes</button>
+    <button onclick="deleteShot(${id});closeEditShot()" style="width:100%;padding:11px;border:1px solid var(--red);border-radius:var(--r);background:none;color:var(--red);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;margin-top:8px">Delete this shot</button>`;
+  // Live grind label update
+  document.getElementById('edit-grind')?.addEventListener('input',function(){
+    const lbl=document.getElementById('edit-grind-lbl');
+    if(lbl)lbl.textContent=clicks2lbl(parseFloat(this.value)||0);
+  });
+  document.getElementById('edit-overlay').classList.add('open');
+  setTimeout(()=>document.getElementById('edit-sheet').classList.add('open'),10);
+}
+function editSetTaste(id,taste,btn){
+  // Visual toggle
+  btn.closest('.s-sec').querySelectorAll('button').forEach(b=>{
+    const t=b.getAttribute('data-taste');
+    const tObj=TASTES_ESP.find(x=>x.id===t)||TASTES_PO.find(x=>x.id===t)||{color:'var(--text3)'};
+    b.style.borderColor=t===taste?tObj.color:'var(--border)';
+    b.style.background=t===taste?'var(--gold-soft)':'var(--bg2)';
+    b.style.color=t===taste?tObj.color:'var(--text3)';
+  });
+  btn.dataset.selected=taste;
+  // Store on the save button
+  const saveBtn=btn.closest('.sheet-body')?.querySelector('button[onclick^="saveEditShot"]');
+  if(saveBtn)saveBtn.dataset.taste=taste;
+}
+function saveEditShot(id){
+  const s=shots.find(x=>x.id===id);if(!s)return;
+  const newGrind=parseFloat(document.getElementById('edit-grind')?.value);
+  const newDose=parseFloat(document.getElementById('edit-dose')?.value);
+  const newYield=parseFloat(document.getElementById('edit-yield')?.value);
+  const newTime=parseFloat(document.getElementById('edit-time')?.value);
+  const newNotes=document.getElementById('edit-notes')?.value||'';
+  const saveBtn=document.querySelector('#edit-body button[onclick^="saveEditShot"]');
+  const newTaste=saveBtn?.dataset.taste||s.taste;
+  if(!isNaN(newGrind))s.grind=newGrind;
+  if(!isNaN(newDose))s.dose=newDose;
+  if(!isNaN(newYield)){if(s.brewMode==='pourover')s.water=newYield;else s.yield=newYield;}
+  if(!isNaN(newTime)){if(s.brewMode==='pourover')s.totalTime=newTime;else s.time=newTime;}
+  s.notes=newNotes;
+  s.taste=newTaste;
+  s.ratio=(s.brewMode==='pourover'?(s.water/s.dose):(s.yield/s.dose)).toFixed(2);
+  persist();closeEditShot();renderLog();
+}
+function closeEditShot(){
+  document.getElementById('edit-sheet').classList.remove('open');
+  document.getElementById('edit-overlay').classList.remove('open');
+}
+
 function doLog(){
   if(!taste)return;
   const prevShot=getLastSameTaste(taste);
   const tds=parseFloat(document.getElementById('tds-inp')?.value)||null;
   const ey=tds?(tds*(brewMode==='pourover'?PO.water:P.yield))/(brewMode==='pourover'?PO.dose:P.dose):null;
   const s=brewMode==='pourover'
-    ?{id:Date.now(),brewMode,taste,puck,notes:document.getElementById('notes').value,
+    ?{id:Date.now(),brewMode,taste,intensity,puck,notes:document.getElementById('notes').value,
        ...JSON.parse(JSON.stringify(PO)),...JSON.parse(JSON.stringify(C)),
        grinder:RIG.grinder,ratio:(PO.water/PO.dose).toFixed(2),tds,ey,
        logDate:new Date().toLocaleDateString([],{day:'2-digit',month:'short'}),
        logTime:new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}),
        recs:diagnosePO(taste,PO,C)}
-    :{id:Date.now(),brewMode,taste,puck,notes:document.getElementById('notes').value,
+    :{id:Date.now(),brewMode,taste,intensity,puck,notes:document.getElementById('notes').value,
        ...JSON.parse(JSON.stringify(P)),...JSON.parse(JSON.stringify(C)),
        machine:RIG.machine,grinder:RIG.grinder,portafilter:RIG.portafilter,basketType:RIG.basketType,
        ratio:(P.yield/P.dose).toFixed(2),tds,ey,
@@ -3004,10 +3411,12 @@ function doLog(){
   btn.textContent='✓ LOGGED';btn.className='log-btn saved';
   updateRefBar();updateDialinStrip();
   setTimeout(()=>{
-    taste=null;puck=null;
+    taste=null;puck=null;intensity=3;
     renderTasteGrid();renderPuckPicker();
     document.getElementById('puck-wrap').style.display='none';
     const pn=document.getElementById('puck-note');if(pn)pn.remove();
+    const irow=document.getElementById('intensity-row');if(irow)irow.style.display='none';
+    setIntensity(3);
     document.getElementById('diag-area').innerHTML='';
     document.getElementById('notes').value='';
     const ti=document.getElementById('tds-inp');if(ti)ti.value='';
@@ -3050,9 +3459,13 @@ function renderLog(){
           <div class="shot-card-hdr">
             <div>
               <div style="font-size:10px;font-weight:600;color:${s.brewMode==='pourover'?'var(--blue)':'var(--gold)'};letter-spacing:0.5px;margin-bottom:2px">${s.brewMode==='pourover'?'POUR OVER':'ESPRESSO'}</div>
-              <div class="shot-taste" style="color:${tObj.color}">${tObj.emoji} ${tObj.lbl}</div>
+              <div class="shot-taste" style="color:${tObj.color}">${tObj.emoji} ${tObj.lbl}${s.intensity&&s.intensity!==3?' · '+'●'.repeat(s.intensity):''}
+              </div>
             </div>
-            <div class="shot-ts">${s.logDate}<br/>${s.logTime}</div>
+            <div style="display:flex;align-items:center;gap:7px">
+              <button onclick="openEditShot(${s.id})" style="padding:4px 10px;border:1px solid var(--border2);border-radius:20px;background:none;color:var(--text4);font-family:inherit;font-size:10px;font-weight:600;cursor:pointer">Edit</button>
+              <div class="shot-ts">${s.logDate}<br/>${s.logTime}</div>
+            </div>
           </div>
           <div class="shot-params">
             <div class="shot-p"><span>Dose </span>${s.dose}g</div>
@@ -3062,7 +3475,14 @@ function renderLog(){
             <div class="shot-p"><span>Temp </span>${s.temp}°C</div>
             <div class="shot-p"><span>Grind </span>${grindLbl}</div>
           </div>
-          ${s.name?`<div class="shot-bean">${ORIGINS[s.country]?.flag||'🫘'} ${s.name}${s.daysOld?' · '+s.daysOld+'d':''}</div>`:''}
+          ${(s.name||s.country)?`<div class="shot-bean" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="font-size:15px">${ORIGINS[s.country]?.flag||'🫘'}</span>
+            <span style="font-weight:600;color:var(--text2)">${s.name||ORIGINS[s.country]?.name||'Unknown bean'}</span>
+            ${s.country&&ORIGINS[s.country]?`<span style="font-size:10px;color:var(--text4)">${ORIGINS[s.country].name}</span>`:''}
+            ${s.roast?`<span style="font-size:10px;color:var(--text4);background:var(--bg3);padding:1px 6px;border-radius:10px">${s.roast}</span>`:''}
+            ${s.process?`<span style="font-size:10px;color:var(--text4);background:var(--bg3);padding:1px 6px;border-radius:10px">${s.process.replace('_',' ')}</span>`:''}
+            ${s.daysOld?`<span style="font-size:10px;color:var(--text4)">${s.daysOld}d off roast</span>`:''}
+          </div>`:''}
           ${s.puck?`<div style="font-size:11px;color:var(--text4);margin-bottom:3px">${PUCK_STATES.find(p=>p.id===s.puck)?.ico||''} Puck: ${PUCK_STATES.find(p=>p.id===s.puck)?.lbl||s.puck}</div>`:''} 
           ${s.ey?`<div class="shot-ey" style="color:${s.ey>=18&&s.ey<=22?'var(--green)':'var(--amber)'}">EY: ${s.ey.toFixed(1)}% (TDS ${s.tds}%)</div>`:''}
           ${s.notes?`<div class="shot-note">"${s.notes}"</div>`:''}
@@ -3207,11 +3627,12 @@ function showArticle(id){
   document.getElementById('scr').scrollTop=0;
   const links=Array.isArray(t.links)?t.links:[];
   const pairs=[];for(let i=0;i<links.length;i+=2)if(links[i+1])pairs.push([links[i],links[i+1]]);
+  const linksHTML='';
   document.getElementById('learn-art-content').innerHTML=`
     <div class="learn-art-title">${t.ico} ${t.title}</div>
     <div class="learn-art-sub">${t.sub}</div>
     <div class="art-body">${t.body}</div>
-    ${pairs.length?`<div style="margin-top:16px"><div style="font-size:10px;font-weight:600;color:var(--text4);letter-spacing:1.5px;margin-bottom:9px">WATCH & LEARN</div>${pairs.map(([u,l])=>`<a href="${u}" target="_blank" class="yt-link"><span style="font-size:16px">▶</span>${l}</a>`).join('')}</div>`:''}`;
+    ${linksHTML}`;
 }
 function closeArticle(){currentArticle=null;renderLearn();}
 
@@ -3238,8 +3659,106 @@ function obFinish(){
 function obSkip(){sv('onboarded',true);document.getElementById('onboard').style.display='none';}
 
 // ══ BOOT ════════════════════════════════════════════════════════════════════
+// ══ AI NOTES INTERPRETATION ══════════════════════════════════════════════════
+async function interpretNotes(){
+  if(!requirePro('ai-notes'))return;
+  const notes=document.getElementById('notes')?.value?.trim();
+  if(!notes||notes.length<10){
+    const st=document.getElementById('ai-notes-status');
+    if(st)st.textContent='Write a few words about the shot first.';
+    return;
+  }
+  const btn=document.getElementById('ai-notes-btn');
+  const status=document.getElementById('ai-notes-status');
+  if(btn)btn.textContent='✦ Thinking…';
+  if(status)status.textContent='';
+  try{
+    const ctx={
+      brewMode,
+      dose:P.dose,yield:P.yield,time:P.time,grind:clicks2lbl(P.grind),
+      temp:P.temp,ratio:(P.yield/P.dose).toFixed(2),
+      pressure:P.pressure,opvActivated:P.opvActivated,
+      tamp:P.tamp,distrib:P.distrib,
+      bean:{country:C.country,roast:C.roast,process:C.process,daysOld:C.daysOld,altitude:C.altitude},
+      puck,taste
+    };
+    const jsonFmt='{"insights":[{"priority":1,"action":"...","reason":"..."}]}';
+    const prompt=
+      'You are an expert barista coach. The user wrote: "'+notes+'"\n\n'+
+      'Shot parameters: '+JSON.stringify(ctx)+'\n\n'+
+      'Give 2-3 specific actionable recommendations for the next shot. '+
+      'Plain language. Focus on root cause given these parameters.\n\n'+
+      'Return ONLY valid JSON: '+jsonFmt;
+
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',
+      headers:{'Content-Type':'application/json','anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-calls':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:500,messages:[{role:'user',content:prompt}]})});
+    if(!resp.ok)throw new Error('API '+resp.status);
+    const data=await resp.json();
+    const text=data.content?.find(c=>c.type==='text')?.text||'{}';
+    const result=JSON.parse(text.replace(/```json|```/g,'').trim());
+    if(result.insights?.length){
+      // Show in diag area as a special AI card
+      const existing=document.getElementById('diag-area');
+      const aiCard=document.createElement('div');
+      aiCard.id='ai-diag-card';
+      aiCard.style.cssText='background:var(--bg2);border:1px solid var(--gold-dim);border-top:3px solid var(--gold);border-radius:var(--r);padding:0;margin-bottom:12px;animation:slideUp 0.22s ease';
+      const insHTML=result.insights.map((ins,i)=>{
+        const border=i<result.insights.length-1?'border-bottom:1px solid var(--border)':'';
+        return '<div style="padding:8px 0;'+border+'">'+
+          '<div style="font-size:12px;font-weight:700;color:var(--text2);margin-bottom:2px">'+ins.priority+'. '+ins.action+'</div>'+
+          '<div style="font-size:11px;color:var(--text3);line-height:1.6">'+ins.reason+'</div></div>';
+      }).join('');
+      aiCard.innerHTML='<div style="display:flex;align-items:center;gap:9px;padding:11px 14px;border-bottom:1px solid var(--border)"><span style="font-size:18px">❆</span><div><div style="font-size:14px;font-weight:700;color:var(--gold)">AI Shot Analysis</div><div style="font-size:10px;color:var(--text4)">Based on your notes + parameters</div></div></div><div style="padding:11px 14px">'+insHTML+'</div>';
+      const oldAI=document.getElementById('ai-diag-card');if(oldAI)oldAI.remove();
+      existing?.insertAdjacentElement('afterend',aiCard);
+      if(status)status.textContent='';
+    }
+  }catch(err){
+    console.error('AI notes:',err);
+    if(status)status.textContent='Could not interpret — try again.';
+  }
+  finally{if(btn)btn.textContent='✦ Interpret notes';}
+}
+
+// ══ PRO / MONETISATION ═══════════════════════════════════════════════════════
+let _proUnlocked=false;
+function loadProState(){_proUnlocked=ld('pro_unlocked',false);}
+function isProUnlocked(){return _proUnlocked;}
+function renderProState(){
+  const proCard=document.getElementById('pro-card');
+  const proActive=document.getElementById('pro-active-card');
+  if(_proUnlocked){
+    if(proCard)proCard.style.display='none';
+    if(proActive)proActive.style.display='block';
+  } else {
+    if(proCard)proCard.style.display='block';
+    if(proActive)proActive.style.display='none';
+  }
+}
+function handleProPurchase(){
+  // Placeholder — in production this opens Stripe Checkout or RevenueCat
+  // For now shows a coming soon message
+  const btn=document.getElementById('pro-btn');
+  if(btn){btn.textContent='Coming soon — payment not yet live';btn.style.background='var(--bg3)';btn.style.color='var(--text3)';}
+  setTimeout(()=>{if(btn){btn.textContent='Unlock Pro — €4.99';btn.style.background='var(--gold)';btn.style.color='#0a0907';}},3000);
+}
+function openTip(amount){
+  // Placeholder — links to Ko-fi or Buy Me a Coffee
+  const url='https://ko-fi.com/cejf';
+  window.open(url,'_blank');
+}
+// Guard AI features behind Pro check
+function requirePro(feature){
+  if(_proUnlocked)return true;
+  const msg=document.getElementById('ai-notes-status');
+  if(msg)msg.textContent='✦ Pro feature — unlock in the Support tab for €4.99';
+  setTimeout(()=>{if(msg&&msg.textContent.includes('Pro feature'))msg.textContent='';},3500);
+  return false;
+}
+
 function boot(){
-  restore();initTheme();
+  restore();loadProState();initTheme();
   M.opv=RIG.opv;
   renderTasteGrid();updateChips();updateCoffeeCard();updateRefBar();updateDialinStrip();
   updateTimerDisplay(0);
@@ -3262,75 +3781,6 @@ function boot(){
   }
 }
 boot();
-
-(function(){
-  try{const b=new Blob(['{"name":"Ćeif — Espresso Diagnostics","short_name":"Ćeif","start_url":"./","display":"standalone","orientation":"portrait","background_color":"#0a0907","theme_color":"#0a0907","icons":[{"src":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjEwMCIgZmlsbD0iIzBhMDkwNyIvPgogIDxjaXJjbGUgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMjAwIiBmaWxsPSIjMWExNTEwIiBzdHJva2U9IiMzYTJlMTgiIHN0cm9rZS13aWR0aD0iOCIvPgogIDxwYXRoIGQ9Ik0xNjAgMzcwUTE1NSAyNzAgMTcwIDIwMFExOTAgMTMwIDI1NiAxMzBRMzIyIDEzMCAzNDIgMjAwUTM1NyAyNzAgMzUyIDM3MFEzNTIgMzgwIDI1NiAzODBRMTYwIDM4MCAxNjAgMzcwWiIgZmlsbD0iI2M4OTAzYSIvPgogIDxlbGxpcHNlIGN4PSIyNTYiIGN5PSIzNzgiIHJ4PSI5NiIgcnk9IjIyIiBmaWxsPSIjOWE2ODI4Ii8+CiAgPHBhdGggZD0iTTM0MiAyMTVRNDAwIDIxMCA0MDAgMjU1UTQwMCAzMDAgMzQyIDI4NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzg5MDNhIiBzdHJva2Utd2lkdGg9IjE4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8ZWxsaXBzZSBjeD0iMjU2IiBjeT0iMTMyIiByeD0iODYiIHJ5PSIyMCIgZmlsbD0iIzBhMDkwNyIvPgogIDx0ZXh0IHg9IjI1NiIgeT0iMjkwIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSIxMDAiIGZvbnQtd2VpZ2h0PSIzMDAiIGZpbGw9IiNjOWE1NWEiIHRleHQtYW5jaG9yPSJtaWRkbGUiPsSGPC90ZXh0Pgo8L3N2Zz4K","sizes":"any","type":"image/svg+xml"}]}'],{type:'application/json'});const l=document.createElement('link');l.rel='manifest';l.href=URL.createObjectURL(b);document.head.appendChild(l);}catch(e){}
-  if('serviceWorker' in navigator&&location.protocol==='https:'){
-    try{const sw=`// Ćeif Service Worker — maintenance reminders
-// Deploy alongside index.html on GitHub Pages
-
-const CACHE='ceif-v1';
-let scheduledReminders=[];
-let timers=[];
-
-self.addEventListener('install',e=>self.skipWaiting());
-self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));
-
-self.addEventListener('message',e=>{
-  if(e.data?.type==='SCHEDULE_REMINDERS'){
-    // Clear existing timers
-    timers.forEach(t=>clearTimeout(t));
-    timers=[];
-    scheduledReminders=e.data.reminders||[];
-    scheduleAll();
-  }
-});
-
-function scheduleAll(){
-  const now=Date.now();
-  scheduledReminders.forEach(r=>{
-    const delay=Math.max(0,r.nextDue-now);
-    const t=setTimeout(()=>fireNotification(r),delay);
-    timers.push(t);
-  });
-}
-
-function fireNotification(r){
-  const options={
-    body:r.name+' is due. Tap to open Ćeif.',
-    icon:'./icon-192.png',
-    badge:'./icon-192.png',
-    tag:'ceif-maint-'+r.id,
-    requireInteraction:true,
-    data:{url:self.registration.scope,itemId:r.id},
-    actions:[
-      {action:'open',title:'Open app'},
-      {action:'snooze',title:'Snooze 3 days'}
-    ]
-  };
-  self.registration.showNotification('Ćeif — '+r.name+' due',options);
-}
-
-self.addEventListener('notificationclick',e=>{
-  e.notification.close();
-  if(e.action==='snooze'){
-    // Tell the app to snooze this reminder
-    self.clients.matchAll({type:'window'}).then(cls=>{
-      cls.forEach(c=>c.postMessage({type:'SNOOZE_REMINDER',id:e.notification.data?.itemId,days:3}));
-    });
-    return;
-  }
-  e.waitUntil(
-    self.clients.matchAll({type:'window',includeUncontrolled:true}).then(cls=>{
-      const match=cls.find(c=>c.url.startsWith(self.registration.scope));
-      if(match)return match.focus();
-      return self.clients.openWindow(e.notification.data?.url||self.registration.scope);
-    })
-  );
-});
-`;const b=new Blob([sw],{type:'application/javascript'});navigator.serviceWorker.register(URL.createObjectURL(b),{scope:'./'});}catch(e){}
-  }
-})();
 </script>
 </body>
 </html>
